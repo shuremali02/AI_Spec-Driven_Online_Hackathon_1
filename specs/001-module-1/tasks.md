@@ -2,45 +2,45 @@
 
 ## Feature: The Robotic Nervous System (ROS 2)
 
-This document outlines the tasks for implementing Module 1, organized into phases, with dependencies and quality checks as detailed in `specs/module-1/plan.md` and `specs/module-1/spec.md`.
+This document outlines the tasks for implementing Module 1, organized into phases, with dependencies and quality checks as detailed in `specs/001-module-1/plan.md` and `specs/001-module-1/spec.md`.
 
 ## Phase 1: Pre-Generation Setup
 
 ### Story Goal: Prepare the environment and verify prerequisites for content generation.
 
-- [ ] T001 Verify combined spec `specs/module-1/spec.md` is complete and valid
-- [ ] T002 Create output directory for module 1 docs: `book-write/docs/module-1/`
-- [ ] T003 Create output directory for module 1 labs: `book-write/docs/module-1/labs`
-- [ ] T004 Create output directory for module 1 examples: `book-write/docs/module-1/examples`
-- [ ] T005 Review Module 1 combined spec for clarity and completeness: `specs/module-1/spec.md`
+- [X] T001 Verify combined spec `specs/001-module-1/spec.md` is complete and valid
+- [X] T002 Create output directory for module 1 docs: `book-write/docs/module-1/`
+- [X] T003 Create output directory for module 1 labs: `book-write/docs/module-1/labs`
+- [X] T004 Create output directory for module 1 examples: `book-write/docs/module-1/examples`
+- [X] T005 Review Module 1 combined spec for clarity and completeness: `specs/001-module-1/spec.md`
 
 ## Phase 2: Chapter Content Generation
 
-### Story Goal: Generate content for each chapter sequentially, incorporating diagrams and code examples as specified in `specs/module-1/spec.md`.
+### Story Goal: Generate content for each chapter sequentially, incorporating diagrams and code examples as specified in `specs/001-module-1/spec.md`.
 
 ### Chapter 1: Introduction to Physical AI and Embodied Intelligence
 
-- [ ] T006 [C1] Plan chapter structure using `chapter-outliner` skill for Chapter 1 section in `specs/module-1/spec.md`
-- [ ] T007 [C1] Generate Chapter 1 content using `tech_writer` agent to `book-write/docs/module-1/chapter-01-intro-physical-ai.md` (from `specs/module-1/spec.md`)
-- [ ] T008 [P] [C1] Generate "Digital AI vs Physical AI" diagram using `diagram-generator` skill
-- [ ] T009 [P] [C1] Generate "Sensorimotor Loop" diagram using `diagram-generator` skill
-- [ ] T010 [P] [C1] Generate "Sensor Systems" diagram using `diagram-generator` skill
+- [X] T006 [C1] Plan chapter structure using `chapter-outliner` skill for Chapter 1 section in `specs/001-module-1/spec.md`
+- [X] T007 [C1] Generate Chapter 1 content using `tech_writer` agent to `book-write/docs/module-1/chapter-01-intro-physical-ai.md` (from `specs/001-module-1/spec.md`)
+- [X] T008 [P] [C1] Generate "Digital AI vs Physical AI" diagram using `diagram-generator` skill
+- [X] T009 [P] [C1] Generate "Sensorimotor Loop" diagram using `diagram-generator` skill
+- [X] T010 [P] [C1] Generate "Sensor Systems" diagram using `diagram-generator` skill
 - [ ] T011 [C1] Manually insert generated Mermaid diagrams into `book-write/docs/module-1/chapter-01-intro-physical-ai.md`
 - [ ] T012 [C1] Review Chapter 1 content, word count, diagrams, frontmatter, and links: `book-write/docs/module-1/chapter-01-intro-physical-ai.md`
 
 ### Chapter 2: Robot Operating System 2 (ROS 2) Architecture
 
-- [ ] T013 [C2] Generate Chapter 2 content using `tech_writer` agent to `book-write/docs/module-1/chapter-02-ros2-architecture.md` (from `specs/module-1/spec.md`)
-- [ ] T014 [P] [C2] Generate "ROS 2 Communication Patterns" diagram using `diagram-generator` skill
-- [ ] T015 [P] [C2] Generate "DDS QoS Profiles Explained" diagram using `diagram-generator` skill
-- [ ] T016 [P] [C2] Generate "High-Level ROS 1 vs ROS 2 Architecture" diagram using `diagram-generator` skill
+- [X] T013 [C2] Generate Chapter 2 content using `tech_writer` agent to `book-write/docs/module-1/chapter-02-ros2-architecture.md` (from `specs/001-module-1/spec.md`)
+- [X] T014 [P] [C2] Generate "ROS 2 Communication Patterns" diagram using `diagram-generator` skill
+- [X] T015 [P] [C2] Generate "DDS QoS Profiles Explained" diagram using `diagram-generator` skill
+- [X] T016 [P] [C2] Generate "High-Level ROS 1 vs ROS 2 Architecture" diagram using `diagram-generator` skill
 - [ ] T017 [C2] Manually insert generated Mermaid diagrams into `book-write/docs/module-1/chapter-02-ros2-architecture.md`
 - [ ] T018 [C2] Review Chapter 2 code examples (pseudocode) for Python 3.10+ syntax, type hints, docstrings: `book-write/docs/module-1/chapter-02-ros2-architecture.md`
 - [ ] T019 [C2] Review Chapter 2 content, word count, diagrams, code examples, and links: `book-write/docs/module-1/chapter-02-ros2-architecture.md`
 
 ### Chapter 3: ROS 2 Nodes, Topics, and Services
 
-- [ ] T020 [C3] Generate Chapter 3 content using `tech_writer` agent to `book-write/docs/module-1/chapter-03-first-nodes.md` (from `specs/module-1/spec.md`)
+- [ ] T020 [C3] Generate Chapter 3 content using `tech_writer` agent to `book-write/docs/module-1/chapter-03-first-nodes.md` (from `specs/001-module-1/spec.md`)
 - [ ] T021 [P] [C3] Generate "Publisher-Subscriber Node Interaction" diagram using `diagram-generator` skill
 - [ ] T022 [P] [C3] Generate "Service Client-Server Interaction" diagram using `diagram-generator` skill
 - [ ] T023 [P] [C3] Generate "ROS 2 Message Definition Flow" diagram using `diagram-generator` skill
@@ -52,7 +52,7 @@ This document outlines the tasks for implementing Module 1, organized into phase
 
 ### Chapter 4: Building ROS 2 Packages with Python
 
-- [ ] T029 [C4] Generate Chapter 4 content using `tech_writer` agent to `book-write/docs/module-1/chapter-04-urdf.md` (from `specs/module-1/spec.md`)
+- [ ] T029 [C4] Generate Chapter 4 content using `tech_writer` agent to `book-write/docs/module-1/chapter-04-urdf.md` (from `specs/001-module-1/spec.md`)
 - [ ] T030 [P] [C4] Generate "ROS 2 Workspace Structure" diagram using `diagram-generator` skill
 - [ ] T031 [P] [C4] Generate "Colcon Build Process" diagram using `diagram-generator` skill
 - [ ] T032 [P] [C4] Generate "Launch File Orchestration" diagram using `diagram-generator` skill
@@ -65,8 +65,8 @@ This document outlines the tasks for implementing Module 1, organized into phase
 
 ### Story Goal: Integrate generated chapters into the Docusaurus structure and ensure coherence.
 
-- [ ] T037 [P] Create or update module index: `book-write/docs/module-1/index.md`
-- [ ] T038 [P] Update Docusaurus sidebar with Module 1 chapters: `book-write/sidebars.ts`
+- [X] T037 [P] Create or update module index: `book-write/docs/module-1/index.md`
+- [X] T038 [P] Update Docusaurus sidebar with Module 1 chapters: `book-write/sidebars.ts`
 - [ ] T039 Review all chapters for cross-chapter links (Ch1->Ch2, Ch2->Ch3, Ch3->Ch4)
 - [ ] T040 Create solutions folder for labs: `book-write/docs/module-1/labs/solutions`
 - [ ] T041 Add solution files with `<details>` blocks for labs in `book-write/docs/module-1/labs/solutions`
@@ -99,7 +99,7 @@ This document outlines the tasks for implementing Module 1, organized into phase
 
 ### Story Goal: Document module completion and update project status.
 
-- [ ] T056 Create Module 1 completion report: `specs/module-1/completion-report.md`
+- [ ] T056 Create Module 1 completion report: `specs/001-module-1/completion-report.md`
 - [ ] T057 Update main README with Module 1 status
 - [ ] T058 Git commit for Chapter 1: `book-write/docs/module-1/chapter-01-intro-physical-ai.md`
 - [ ] T059 Git commit for Chapter 2: `book-write/docs/module-1/chapter-02-ros2-architecture.md`
