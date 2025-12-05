@@ -157,7 +157,7 @@ Upon completing Module 1, students will be able to:
 - **Placement Rules:** Diagrams MUST be embedded inline within the relevant sections of each chapter to enhance visual understanding. Each diagram should have a clear caption and a brief explanation of what it illustrates.
 
 ## Success Criteria
-- All 4 chapters of Module 1 are fully specified within this single `specs/module-1/spec.md` file.
+- All 4 chapters of Module 1 are fully specified within this single `specs/001-module-1/spec.md` file.
 - Each chapter's learning outcomes are measurable and aligned with the overall module objectives.
 - All required examples and diagrams are clearly outlined for each chapter.
 - Technical depth requirements for each chapter are met.
@@ -189,9 +189,11 @@ Upon completing Module 1, students will be able to:
     - Context7 MCP server for retrieving latest documentation on Docusaurus, ROS 2, Python libraries.
 
 ## Deliverables
-The primary deliverable is this single, comprehensive Markdown specification file: `specs/module-1/spec.md`. It will include:
+The primary deliverable is this single, comprehensive Markdown specification file: `specs/001-module-1/spec.md`. It will include:
 - All mandatory sections as outlined above.
 - Detailed chapter specifications for Chapter 1-4.
 - Clear definitions of content constraints, NFRs, and visual requirements.
 - Measurable success criteria, risks, and dependencies.
 - Structured with headings, bullets, tables, and code blocks as appropriate, ready for `sp.plan` and `sp.tasks` generation.
+
+
