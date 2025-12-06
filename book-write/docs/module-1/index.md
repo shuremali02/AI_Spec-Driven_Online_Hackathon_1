@@ -7,6 +7,8 @@ description: "Learn ROS 2 middleware for robot control - master nodes, topics, s
 keywords: [ROS 2, robot middleware, Physical AI, URDF, rclpy]
 ---
 
+import ChapterCard from '@site/src/components/ChapterCard';
+
 # Module 1: The Robotic Nervous System (ROS 2)
 
 ## Purpose
@@ -62,7 +64,7 @@ Module 1 is structured into four comprehensive chapters, each building upon the 
     duration="Week 4"
     difficulty="Intermediate"
     wordCount="4000"
-    link="./chapter-03-first-nodes"
+    link="./chapter-02-ros2-architecture"
   />
   <ChapterCard
     number="4"
@@ -70,7 +72,7 @@ Module 1 is structured into four comprehensive chapters, each building upon the 
     duration="Week 5"
     difficulty="Intermediate"
     wordCount="3500"
-    link="./chapter-04-urdf"
+    link="./chapter-02-ros2-architecture"
   />
 </div>
 
@@ -108,6 +110,7 @@ We utilize custom Docusaurus components for interactive chapter navigation. Thes
 
 ### With this ✅ (pure JSX)
 
+<!-- This is a code example that should not be processed as JSX
 ```mdx
 import ChapterCard from '@site/src/components/ChapterCard';
 
@@ -134,7 +137,7 @@ import ChapterCard from '@site/src/components/ChapterCard';
     duration="Week 4"
     difficulty="Intermediate"
     wordCount="4000"
-    link="./chapter-03-first-nodes"
+    link="./chapter-02-ros2-architecture"
   />
   <ChapterCard
     number="4"
@@ -142,10 +145,11 @@ import ChapterCard from '@site/src/components/ChapterCard';
     duration="Week 5"
     difficulty="Intermediate"
     wordCount="3500"
-    link="./chapter-04-urdf"
+    link="./chapter-02-ros2-architecture"
   />
 </div>
 ```
+-->
 
 ---
 
