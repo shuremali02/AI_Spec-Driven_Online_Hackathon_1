@@ -1,6 +1,10 @@
 const sidebars = {
   tutorialSidebar: [
-    'intro',
+    {
+      type: 'doc',
+      id: 'intro', // Refers to book-write/docs/index.md (homepage)
+      label: '🏠 Home',
+    },
 
     {
       type: 'category',
