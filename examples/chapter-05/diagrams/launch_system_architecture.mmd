@@ -1,0 +1,46 @@
+graph TB
+    subgraph "ROS 2 Launch System"
+        LaunchFile[/"Launch File<br/>(Python)"/]
+        LaunchDescription["Launch Description"]
+        LaunchActions["Launch Actions"]
+    end
+
+    subgraph "Launch Process"
+        LaunchService["Launch Service"]
+        ProcessManager["Process Manager"]
+    end
+
+    subgraph "Robot Nodes"
+        Node1["ROS 2 Node 1"]
+        Node2["ROS 2 Node 2"]
+        Node3["ROS 2 Node N"]
+    end
+
+    subgraph "Parameter System"
+        ParamServer1["Parameter Server 1"]
+        ParamServer2["Parameter Server 2"]
+        ParamServerN["Parameter Server N"]
+    end
+
+    LaunchFile --> LaunchDescription
+    LaunchDescription --> LaunchActions
+    LaunchActions --> LaunchService
+    LaunchService --> ProcessManager
+    ProcessManager --> Node1
+    ProcessManager --> Node2
+    ProcessManager --> Node3
+    Node1 --> ParamServer1
+    Node2 --> ParamServer2
+    Node3 --> ParamServerN
+
+    style LaunchFile fill:#e1f5fe
+    style LaunchDescription fill:#e8f5e8
+    style LaunchActions fill:#e8f5e8
+    style LaunchService fill:#fff3e0
+    style ProcessManager fill:#fff3e0
+    style Node1 fill:#ffebee
+    style Node2 fill:#ffebee
+    style Node3 fill:#ffebee
+    style ParamServer1 fill:#f3e5f5
+    style ParamServer2 fill:#f3e5f5
+    style ParamServerN fill:#f3e5f5
