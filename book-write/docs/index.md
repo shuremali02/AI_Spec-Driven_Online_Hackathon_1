@@ -1,9 +1,11 @@
 ---
 id: intro
 title: "Physical AI & Humanoid Robotics"
-sidebar_position: 1
-description: "Master Physical AI, ROS 2, Isaac Sim, and humanoid robotics – Bridging digital AI and physical robots for embodied intelligence."
+sidebar_position: 0
+sidebar_label: "🏠 Home"
+description: "Learn Physical AI & Humanoid Robotics - from ROS 2 fundamentals to conversational AI robots"
 keywords: [Physical AI, Humanoid Robotics, ROS 2, Isaac Sim, Embodied Intelligence, AI, Robotics, Machine Learning, Python]
+slug: /
 ---
 
 # Physical AI & Humanoid Robotics
@@ -63,7 +65,7 @@ import ModuleCard from '@site/src/components/ModuleCard';
     duration="Weeks 6-7"
     purpose="Explore advanced robot simulation and sensor modeling in realistic virtual environments."
     outcomes={["Develop and integrate robots within Gazebo and Unity simulators", "Simulate complex sensor data for realistic AI training"]}
-    link="/docs/module-1/"
+    link="/docs/module-2/"
   />
   <ModuleCard
     icon="🤖"
@@ -72,7 +74,7 @@ import ModuleCard from '@site/src/components/ModuleCard';
     duration="Weeks 8-10"
     purpose="Integrate high-performance AI frameworks with robotics using NVIDIA Isaac Sim."
     outcomes={["Implement VSLAM and Nav2 for autonomous robot navigation", "Leverage GPU-accelerated AI for real-time perception"]}
-    link="/docs/module-1/"
+    link="/docs/module-3/"
   />
   <ModuleCard
     icon="🗣️"
@@ -81,7 +83,7 @@ import ModuleCard from '@site/src/components/ModuleCard';
     duration="Weeks 11-13"
     purpose="Design and implement cutting-edge VLA systems for intelligent, human-robot interaction."
     outcomes={["Integrate large language models (LLMs) with robot actions", "Develop multimodal perception and control architectures"]}
-    link="/docs/module-1/"
+    link="/docs/module-4/"
   />
 </div>
 
