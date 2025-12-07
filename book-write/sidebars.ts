@@ -8,47 +8,25 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Chapter 1:Foundations',
+      label: 'Module 1: The Robotic Nervous System (ROS 2)',
+      collapsible: true,
       collapsed: false,
       items: [
-        'module-1/module-1-overview',
+        'module-1/index',  // Module 1 overview page
         'module-1/chapter-01-intro-physical-ai',
-        
-      ],
-    },
-
-    {
-      type: 'category',
-      label: 'Chapter 2: ROS2 Fandamentals',
-      items: [
         'module-1/chapter-02-ros2-architecture',
-
-      ],
-    },
-
-    {
-      type: 'category',
-      label: 'Chapter 3: Building Your First ROS 2 Nodes',
-      items: [
         'module-1/chapter-03-first-nodes',
-
-      ],
-    },
-
-    {
-      type: 'category',
-      label: 'Chapter 4: URDF Robot Descriptions',
-      items: [
         'module-1/chapter-04-urdf',
-
       ],
     },
 
     {
       type: 'category',
       label: 'Module 2: The Digital Twin (Gazebo & Unity)',
+      collapsible: true,
+      collapsed: false,
       items: [
-        'module-2/index',
+        'module-2/index',  // Module 2 overview page
 
       ],
     },
@@ -56,8 +34,10 @@ const sidebars = {
     {
       type: 'category',
       label: 'Module 3: The AI-Robot Brain (NVIDIA Isaac Sim)',
+      collapsible: true,
+      collapsed: false,
       items: [
-        'module-3/index',
+        'module-3/index',  // Module 3 overview page
 
       ],
     },
@@ -65,20 +45,14 @@ const sidebars = {
     {
       type: 'category',
       label: 'Module 4: Vision-Language-Action (VLA)',
+      collapsible: true,
+      collapsed: false,
       items: [
-        'module-4/index',
+        'module-4/index',  // Module 4 overview page
 
       ],
     },
 
-    {
-      type: 'category',
-      label: 'Tutorial - Extras',
-      items: [
-        'tutorial-extras/manage-docs-versions',
-        'tutorial-extras/translate-your-site',
-      ],
-    },
   ],
 };
 
