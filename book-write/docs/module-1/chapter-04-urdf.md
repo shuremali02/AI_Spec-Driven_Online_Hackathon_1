@@ -2,7 +2,7 @@
 id: chapter-04-urdf
 title: "Chapter 4: URDF Robot Descriptions"
 sidebar_position: 4
-sidebar_label: "4. URDF Robot Descriptions"
+sidebar_label: "Chapter 4: URDF Robot Descriptions"
 description: "Learn to create URDF (Unified Robot Description Format) robot descriptions focusing on humanoid robots, including links, joints, transforms, and Xacro macros"
 keywords: [URDF, robot description, ROS 2, humanoid robotics, XML, robot modeling, Xacro]
 ---

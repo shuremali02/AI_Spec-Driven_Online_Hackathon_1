@@ -41,39 +41,41 @@ To make the most of this module, students should have:
 
 Module 1 is structured into four comprehensive chapters, each building upon the last to provide a complete understanding of ROS 2 and its applications in Physical AI.
 
-<div className="chapter-grid">
-  <ChapterCard
-    number="1"
-    title="Introduction to Physical AI"
-    duration="Week 1-2"
-    difficulty="Beginner"
-    wordCount="4000"
-    link="./chapter-01-intro-physical-ai"
-  />
-  <ChapterCard
-    number="2"
-    title="ROS 2 Architecture Fundamentals"
-    duration="Week 3"
-    difficulty="Beginner"
-    wordCount="3500"
-    link="./chapter-02-ros2-architecture"
-  />
-  <ChapterCard
-    number="3"
-    title="Building Your First ROS 2 Nodes"
-    duration="Week 4"
-    difficulty="Intermediate"
-    wordCount="4000"
-    link="./chapter-02-ros2-architecture"
-  />
-  <ChapterCard
-    number="4"
-    title="URDF Robot Descriptions"
-    duration="Week 5"
-    difficulty="Intermediate"
-    wordCount="3500"
-    link="./chapter-02-ros2-architecture"
-  />
+<div className="container">
+  <div className="row">
+    <ChapterCard
+      number="1"
+      title="Introduction to Physical AI"
+      duration="Week 1-2"
+      difficulty="Beginner"
+      wordCount="4000"
+      link="./chapter-01-intro-physical-ai"
+    />
+    <ChapterCard
+      number="2"
+      title="ROS 2 Architecture Fundamentals"
+      duration="Week 3"
+      difficulty="Beginner"
+      wordCount="3500"
+      link="./chapter-02-ros2-architecture"
+    />
+    <ChapterCard
+      number="3"
+      title="Building Your First ROS 2 Nodes"
+      duration="Week 4"
+      difficulty="Intermediate"
+      wordCount="4000"
+      link="./chapter-03-first-nodes"
+    />
+    <ChapterCard
+      number="4"
+      title="URDF Robot Descriptions"
+      duration="Week 5"
+      difficulty="Intermediate"
+      wordCount="3500"
+      link="./chapter-04-urdf"
+    />
+  </div>
 </div>
 
 ## Module Roadmap

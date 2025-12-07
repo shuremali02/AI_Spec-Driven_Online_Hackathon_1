@@ -1,5 +1,7 @@
 .chapterCard {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1.5rem; /* Add vertical spacing */
+  height: 100%; /* Ensure cards have consistent height */
 }
 
 .chapterCard:hover {

@@ -2,7 +2,7 @@
 id: intro
 title: "Physical AI & Humanoid Robotics"
 sidebar_position: 0
-sidebar_label: "🏠 Home"
+sidebar_label: "📖 Book-Overview"
 description: "Learn Physical AI & Humanoid Robotics - from ROS 2 fundamentals to conversational AI robots"
 keywords: [Physical AI, Humanoid Robotics, ROS 2, Isaac Sim, Embodied Intelligence, AI, Robotics, Machine Learning, Python]
 slug: /
