@@ -1,8 +1,61 @@
 .chapterCard {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1.5rem; /* Add vertical spacing */
+  height: 100%; /* Ensure cards have consistent height */
+  display: flex;
+  flex-direction: column;
+  min-height: 380px; /* Minimum height to contain all content */
 }
 
 .chapterCard:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure consistent card header that can grow with content */
+.chapterCard .card__header {
+  flex: 0 0 auto; /* Don't grow or shrink */
+  padding: 1.5rem 1rem 1rem 1rem !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure consistent card body that can grow with content */
+.chapterCard .card__body {
+  flex: 1 1 auto; /* Allow to grow to fill space */
+  padding: 1rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure consistent footer that doesn't grow */
+.chapterCard .card__footer {
+  flex: 0 0 auto; /* Don't grow or shrink */
+  padding: 1rem !important;
+}
+
+/* Ensure consistent title styling with flexible height */
+.chapterCard h3 {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  min-height: 3.5rem; /* Minimum height for title area */
+}
+
+/* Ensure consistent small text styling */
+.chapterCard small {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Ensure badges wrap properly if needed */
+.chapterCard .badge {
+  margin: 0.25rem;
 }

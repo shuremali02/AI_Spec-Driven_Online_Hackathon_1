@@ -1,7 +1,7 @@
 ---
 title: "Chapter 2: ROS 2 Architecture Fundamentals"
 sidebar_position: 2
-sidebar_label: "🌐 ROS 2 Architecture"
+sidebar_label: "Chapter 2: ROS 2 Architecture"
 description: "Understand the modular structure of ROS 2, nodes, topics, services, actions, DDS middleware, and QoS profiles."
 keywords: [ROS 2, nodes, topics, services, actions, DDS, QoS, rclpy, robot communication]
 ---

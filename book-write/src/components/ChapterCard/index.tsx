@@ -22,7 +22,7 @@ export default function ChapterCard({
   link,
 }: ChapterCardProps): ReactNode {
   return (
-    <div className={clsx('col col--4', styles.chapterCard)}>
+    <div className={clsx('col col--4 padding-horiz--md', styles.chapterCard)}>
       <div className="card">
         <div className="card__header">
           <div className="text--center padding-horiz--md">

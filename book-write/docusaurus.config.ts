@@ -70,7 +70,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Docs',
+          label: 'Book',
         },
         {
           href: 'https://github.com/shuremali02/AI_Spec-Driven_Online_Hackathon_1',

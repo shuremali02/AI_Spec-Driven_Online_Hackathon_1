@@ -2,7 +2,7 @@
 id: chapter-03-first-nodes
 title: "Chapter 3: Building Your First ROS 2 Nodes"
 sidebar_position: 3
-sidebar_label: "3. Building Your First ROS 2 Nodes"
+sidebar_label: "Chapter 3: Building Your First ROS 2 Nodes"
 description: "Learn to create your first ROS 2 publisher and subscriber nodes using Python (rclpy). Build complete working examples with proper structure and debugging techniques."
 keywords: [ROS 2, publisher, subscriber, rclpy, Python, nodes, topics, communication]
 ---

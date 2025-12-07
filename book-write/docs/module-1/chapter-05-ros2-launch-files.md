@@ -2,7 +2,7 @@
 id: module-1-chapter-05-ros2-launch-files
 title: "Chapter 5: ROS 2 Launch Files and Parameter Management"
 sidebar_position: 5
-sidebar_label: "🚀 Chapter 5: Launch Files & Parameters"
+sidebar_label: "Chapter 5: Launch Files & Parameters"
 description: "Learn to orchestrate multiple ROS 2 nodes using launch files and manage parameters for flexible robot system configuration"
 keywords: [ROS 2, launch files, parameters, robot orchestration, rclpy, configuration]
 ---
