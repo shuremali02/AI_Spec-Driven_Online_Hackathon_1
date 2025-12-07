@@ -20,4 +20,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+}
+
+.welcomeSection {
+  padding: 4rem 0;
+  text-align: center;
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.welcomeSection h2 {
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+  font-size: 2rem;
+}
+
+.welcomeSection p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--ifm-font-color-base);
 }
