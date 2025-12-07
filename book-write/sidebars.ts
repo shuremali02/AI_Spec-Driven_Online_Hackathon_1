@@ -17,6 +17,7 @@ const sidebars = {
         'module-1/chapter-02-ros2-architecture',
         'module-1/chapter-03-first-nodes',
         'module-1/chapter-04-urdf',
+        'module-1/module-1-chapter-05-ros2-launch-files',
       ],
     },
 

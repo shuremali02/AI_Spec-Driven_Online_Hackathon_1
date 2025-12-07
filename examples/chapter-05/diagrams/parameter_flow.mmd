@@ -1,0 +1,40 @@
+flowchart LR
+    subgraph "Parameter Sources"
+        A["Launch File<br/>Parameters Dict"]
+        B["YAML Config<br/>File"]
+        C["Command Line<br/>Arguments"]
+        D["Node Default<br/>Values"]
+    end
+
+    subgraph "Parameter Server"
+        E["ROS 2 Parameter<br/>Server (per Node)"]
+    end
+
+    subgraph "Node Execution"
+        F["ROS 2 Node"]
+        G["Parameter<br/>Callbacks"]
+    end
+
+    subgraph "Runtime Updates"
+        H["Dynamic Parameter<br/>Changes"]
+        I["ros2 param<br/>Command"]
+    end
+
+    A --> E
+    B --> E
+    C --> E
+    D --> E
+    E --> F
+    F --> G
+    H --> E
+    I --> E
+
+    style A fill:#e3f2fd
+    style B fill:#e3f2fd
+    style C fill:#e3f2fd
+    style D fill:#e3f2fd
+    style E fill:#f3e5f5
+    style F fill:#e8f5e8
+    style G fill:#e8f5e8
+    style H fill:#fff9c4
+    style I fill:#fff9c4
