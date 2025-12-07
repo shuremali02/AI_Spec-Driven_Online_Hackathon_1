@@ -46,6 +46,33 @@ const sidebars = {
 
     {
       type: 'category',
+      label: 'Module 2: The Digital Twin (Gazebo & Unity)',
+      items: [
+        'module-2/index',
+
+      ],
+    },
+
+    {
+      type: 'category',
+      label: 'Module 3: The AI-Robot Brain (NVIDIA Isaac Sim)',
+      items: [
+        'module-3/index',
+
+      ],
+    },
+
+    {
+      type: 'category',
+      label: 'Module 4: Vision-Language-Action (VLA)',
+      items: [
+        'module-4/index',
+
+      ],
+    },
+
+    {
+      type: 'category',
       label: 'Tutorial - Extras',
       items: [
         'tutorial-extras/manage-docs-versions',
