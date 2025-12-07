@@ -39,7 +39,7 @@ To make the most of this module, students should have:
 
 ## Chapter Overview
 
-Module 1 is structured into four comprehensive chapters, each building upon the last to provide a complete understanding of ROS 2 and its applications in Physical AI.
+Module 1 is structured into five comprehensive chapters, each building upon the last to provide a complete understanding of ROS 2 and its applications in Physical AI.
 
 <div className="container">
   <div className="row">
@@ -75,6 +75,14 @@ Module 1 is structured into four comprehensive chapters, each building upon the 
       wordCount="3500"
       link="./chapter-04-urdf"
     />
+    <ChapterCard
+      number="5"
+      title="ROS 2 Launch Files and Parameter Management"
+      duration="Week 5"
+      difficulty="Intermediate"
+      wordCount="3500"
+      link="./module-1-chapter-05-ros2-launch-files"
+    />
   </div>
 </div>
 
@@ -85,7 +93,7 @@ This roadmap outlines your journey through Module 1, highlighting key milestones
 *   **Week 1-2: Physical AI Introduction** – We begin with the theoretical underpinnings of Physical AI and embodied intelligence, understanding why humanoid robots are at the forefront of this field. You'll gain a conceptual understanding of sensor systems and the challenges of integrating AI with the physical world.
 *   **Week 3: ROS 2 Architecture** – Dive deep into the core components of ROS 2, dissecting nodes, topics, services, and actions. You'll understand the role of DDS middleware and Quality of Service (QoS) settings in robust robot communication.
 *   **Week 4: Building Your First Nodes** – Get hands-on with Python (`rclpy`) to create your first ROS 2 publisher and subscriber nodes. You'll learn how to define custom messages and use launch files for complex system orchestration.
-*   **Week 5: URDF Robot Descriptions** – Conclude the module by mastering URDF (Unified Robot Description Format). You'll learn to describe humanoid robot links, joints, and frames, and visualize your designs in RViz, preparing you for simulating and controlling robots.
+*   **Week 5: URDF Robot Descriptions and Launch Systems** – Conclude the module by mastering URDF (Unified Robot Description Format) for describing humanoid robot links, joints, and frames. You'll also learn to create sophisticated launch files for orchestrating multiple ROS 2 nodes with proper parameter management.
 
 After successfully navigating Module 1, you will have a strong foundation in ROS 2, empowering you to proceed to Module 2, where we will delve into more advanced topics such as robot perception, navigation, and manipulation.
 
@@ -93,14 +101,15 @@ After successfully navigating Module 1, you will have a strong foundation in ROS
 
 ### Module 1 Learning Path
 
-\`\`\`mermaid
+```mermaid
 graph TD
     A[Module 1 Overview] --> B(Chapter 1: Introduction to Physical AI)
     B --> C(Chapter 2: ROS 2 Architecture Fundamentals)
     C --> D(Chapter 3: Building Your First ROS 2 Nodes)
     D --> E(Chapter 4: URDF Robot Descriptions)
-    E --> F[End of Module 1]
-\`\`\`
+    E --> F(Chapter 5: ROS 2 Launch Files and Parameter Management)
+    F --> G[End of Module 1]
+```
 
 ## Interactive Components
 
@@ -116,39 +125,49 @@ We utilize custom Docusaurus components for interactive chapter navigation. Thes
 ```mdx
 import ChapterCard from '@site/src/components/ChapterCard';
 
-<div className="chapter-grid">
-  <ChapterCard
-    number="1"
-    title="Introduction to Physical AI"
-    duration="Week 1-2"
-    difficulty="Beginner"
-    wordCount="4000"
-    link="./chapter-01-intro-physical-ai"
-  />
-  <ChapterCard
-    number="2"
-    title="ROS 2 Architecture Fundamentals"
-    duration="Week 3"
-    difficulty="Beginner"
-    wordCount="3500"
-    link="./chapter-02-ros2-architecture"
-  />
-  <ChapterCard
-    number="3"
-    title="Building Your First ROS 2 Nodes"
-    duration="Week 4"
-    difficulty="Intermediate"
-    wordCount="4000"
-    link="./chapter-02-ros2-architecture"
-  />
-  <ChapterCard
-    number="4"
-    title="URDF Robot Descriptions"
-    duration="Week 5"
-    difficulty="Intermediate"
-    wordCount="3500"
-    link="./chapter-02-ros2-architecture"
-  />
+<div className="container">
+  <div className="row">
+    <ChapterCard
+      number="1"
+      title="Introduction to Physical AI"
+      duration="Week 1-2"
+      difficulty="Beginner"
+      wordCount="4000"
+      link="./chapter-01-intro-physical-ai"
+    />
+    <ChapterCard
+      number="2"
+      title="ROS 2 Architecture Fundamentals"
+      duration="Week 3"
+      difficulty="Beginner"
+      wordCount="3500"
+      link="./chapter-02-ros2-architecture"
+    />
+    <ChapterCard
+      number="3"
+      title="Building Your First ROS 2 Nodes"
+      duration="Week 4"
+      difficulty="Intermediate"
+      wordCount="4000"
+      link="./chapter-03-first-nodes"
+    />
+    <ChapterCard
+      number="4"
+      title="URDF Robot Descriptions"
+      duration="Week 5"
+      difficulty="Intermediate"
+      wordCount="3500"
+      link="./chapter-04-urdf"
+    />
+    <ChapterCard
+      number="5"
+      title="ROS 2 Launch Files and Parameter Management"
+      duration="Week 5"
+      difficulty="Intermediate"
+      wordCount="3500"
+      link="./module-1-chapter-05-ros2-launch-files"
+    />
+  </div>
 </div>
 ```
 -->
