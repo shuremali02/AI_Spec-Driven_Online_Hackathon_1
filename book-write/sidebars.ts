@@ -28,6 +28,24 @@ const sidebars = {
 
     {
       type: 'category',
+      label: 'Chapter 3: Building Your First ROS 2 Nodes',
+      items: [
+        'module-1/chapter-03-first-nodes',
+
+      ],
+    },
+
+    {
+      type: 'category',
+      label: 'Chapter 4: URDF Robot Descriptions',
+      items: [
+        'module-1/chapter-04-urdf',
+
+      ],
+    },
+
+    {
+      type: 'category',
       label: 'Tutorial - Extras',
       items: [
         'tutorial-extras/manage-docs-versions',
