@@ -24,7 +24,7 @@ export default function ModuleCard({
   link,
 }: ModuleCardProps): ReactNode {
   return (
-    <div className={clsx('col col--3', styles.moduleCard)}>
+    <div className={styles.moduleCard}>
       <div className="card">
         <div className="card__header">
           <div className="text--center padding-horiz--md">

@@ -11,32 +11,29 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Physical AI & Embodied Intelligence',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Learn how artificial intelligence transcends the digital realm to inhabit physical bodies through sophisticated humanoid robots.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'ROS 2 Fundamentals',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Master ROS 2 middleware for robust robot communication and control using Python and rclpy.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Complete Learning Path',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        13-week structured course from ROS 2 basics to Vision-Language-Action (VLA) systems for conversational robots.
       </>
     ),
   },
