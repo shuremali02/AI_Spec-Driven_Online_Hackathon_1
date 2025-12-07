@@ -12,7 +12,7 @@ const sidebars = {
       collapsible: true,
       collapsed: false,
       items: [
-        'module-1/index',  // Module 1 overview page
+        'module-1/module-1-overview',  // Module 1 overview page
         'module-1/chapter-01-intro-physical-ai',
         'module-1/chapter-02-ros2-architecture',
         'module-1/chapter-03-first-nodes',
@@ -26,7 +26,7 @@ const sidebars = {
       collapsible: true,
       collapsed: false,
       items: [
-        'module-2/index',  // Module 2 overview page
+        'module-2/module-2-index',  // Module 2 overview page
 
       ],
     },
@@ -37,7 +37,7 @@ const sidebars = {
       collapsible: true,
       collapsed: false,
       items: [
-        'module-3/index',  // Module 3 overview page
+        'module-3/module-3-index',  // Module 3 overview page
 
       ],
     },
@@ -48,7 +48,7 @@ const sidebars = {
       collapsible: true,
       collapsed: false,
       items: [
-        'module-4/index',  // Module 4 overview page
+        'module-4/module-4-index',  // Module 4 overview page
 
       ],
     },
