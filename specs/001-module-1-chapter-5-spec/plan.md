@@ -1,13 +1,13 @@
-# Implementation Plan: Chapter 5 - ROS 2 Launch Files and Parameter Management
+# Implementation Plan: [FEATURE]
 
-**Branch**: `001-module-1-chapter-5-spec` | **Date**: 2025-12-07 | **Spec**: [specs/001-module-1-chapter-5-spec/spec.md](/specs/001-module-1-chapter-5-spec/spec.md)
-**Input**: Feature specification from `/specs/001-module-1-chapter-5-spec/spec.md`
+**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
+**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
 
 **Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
 
 ## Summary
 
-This chapter will teach students how to use ROS 2 launch files to orchestrate multiple nodes and manage parameters for flexible robot system configuration. Students will learn to create organized, reproducible robot applications using launch systems, focusing on Python launch files and parameter management with practical examples.
+[Extract from feature spec: primary requirement + technical approach from research]
 
 ## Technical Context
 
@@ -17,33 +17,28 @@ This chapter will teach students how to use ROS 2 launch files to orchestrate mu
   the iteration process.
 -->
 
-**Language/Version**: Python 3.10+ for launch files and content
-**Primary Dependencies**: ROS 2 Humble Hawksbill, launch libraries (launch, launch_ros), rclpy
-**Storage**: N/A (educational content, no persistent storage)
-**Testing**: Launch file execution and parameter verification
-**Target Platform**: Ubuntu 22.04 LTS with ROS 2 Humble Hawksbill
-**Project Type**: Educational content (single/web - Docusaurus documentation)
-**Performance Goals**: Content should be accessible and clear, with functional examples
-**Constraints**: 3500 words, 4-5 complete launch and parameter examples, 3 diagrams, 5-7 hours student work time
-**Scale/Scope**: Single textbook chapter with 7 sections, 5 code examples, 3 diagrams
+**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
+**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
+**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
+**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
+**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
+**Project Type**: [single/web/mobile - determines source structure]  
+**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
+**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
+**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-This educational content follows the project constitution by:
-- Providing clear learning objectives that align with the course goals
-- Including hands-on examples and practical applications
-- Maintaining progressive complexity from basic to advanced concepts
-- Including assessment strategies for student validation
-- Following the established Docusaurus documentation structure
+[Gates determined based on constitution file]
 
 ## Project Structure
 
 ### Documentation (this feature)
 
 ```text
-specs/001-module-1-chapter-5-spec/
+specs/[###-feature]/
 ├── plan.md              # This file (/sp.plan command output)
 ├── research.md          # Phase 0 output (/sp.plan command)
 ├── data-model.md        # Phase 1 output (/sp.plan command)
@@ -52,36 +47,52 @@ specs/001-module-1-chapter-5-spec/
 └── tasks.md             # Phase 2 output (/sp.tasks command - NOT created by /sp.plan)
 ```
 
-### Educational Content (Docusaurus documentation)
+### Source Code (repository root)
+<!--
+  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
+  for this feature. Delete unused options and expand the chosen structure with
+  real paths (e.g., apps/admin, packages/something). The delivered plan must
+  not include Option labels.
+-->
+
 ```text
-book-write/
-├── docs/
-│   └── module-1/
-│       └── chapter-05-ros2-launch-files.md    # Main chapter content
-├── docusaurus.config.ts                     # Configuration
-├── sidebars.ts                              # Navigation
-└── src/
-    └── components/
-        └── ChapterCard.tsx                  # Chapter navigation component
+# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
+src/
+├── models/
+├── services/
+├── cli/
+└── lib/
+
+tests/
+├── contract/
+├── integration/
+└── unit/
+
+# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
+backend/
+├── src/
+│   ├── models/
+│   ├── services/
+│   └── api/
+└── tests/
+
+frontend/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   └── services/
+└── tests/
+
+# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
+api/
+└── [same as backend above]
+
+ios/ or android/
+└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-### Code Examples and Diagrams
-```text
-examples/
-└── chapter-05/
-    ├── basic_launch_example.py              # Basic launch file example
-    ├── parameterized_nodes.py               # Parameterized node example
-    ├── multi_robot_launch.py                # Multi-robot launch example
-    ├── complex_system_launch.py             # Complex system example
-    ├── launch_with_yaml_config.py           # YAML config example
-    ├── params_config.yaml                   # YAML parameter file
-    └── diagrams/
-        ├── launch_system_architecture.mmd   # Launch system diagram
-        ├── parameter_flow.mmd               # Parameter flow diagram
-        └── system_organization.mmd          # System organization diagram
-```
-
-**Structure Decision**: Educational content follows the Docusaurus documentation structure with the chapter content placed in the appropriate module directory. Code examples are organized in a dedicated examples directory with corresponding diagrams in Mermaid format.
+**Structure Decision**: [Document the selected structure and reference the real
+directories captured above]
 
 ## Complexity Tracking
 
@@ -89,4 +100,5 @@ examples/
 
 | Violation | Why Needed | Simpler Alternative Rejected Because |
 |-----------|------------|-------------------------------------|
-| [N/A] | [No violations identified] | [Constitution requirements met] |
+| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |

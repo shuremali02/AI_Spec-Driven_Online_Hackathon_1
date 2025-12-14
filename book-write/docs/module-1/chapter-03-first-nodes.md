@@ -58,6 +58,43 @@ my_workspace/
 
 The `src/` directory contains your source code packages, while `build/`, `install/`, and `log/` are created automatically when you build your workspace.
 
+```mermaid
+graph TD
+    subgraph "ROS 2 Workspace Structure"
+        WS[my_workspace/]
+        SRC[src/]
+        BUILD[build/]
+        INSTALL[install/]
+        LOG[log/]
+
+        WS --> SRC
+        WS --> BUILD
+        WS --> INSTALL
+        WS --> LOG
+
+        PKG1[package_1/]
+        PKG2[package_2/]
+
+        SRC --> PKG1
+        SRC --> PKG2
+    end
+
+    style WS fill:#667eea,color:#fff
+    style SRC fill:#10b981,color:#fff
+    style BUILD fill:#f59e0b,color:#fff
+    style INSTALL fill:#f59e0b,color:#fff
+    style LOG fill:#f59e0b,color:#fff
+    style PKG1 fill:#8b5cf6,color:#fff
+    style PKG2 fill:#8b5cf6,color:#fff
+```
+
+:::tip Directory Purposes
+- **src/**: Your source code (you edit this)
+- **build/**: Compilation artifacts (auto-generated)
+- **install/**: Installed packages (auto-generated)
+- **log/**: Build logs (auto-generated)
+:::
+
 Let's create a new workspace for our learning projects:
 
 ```bash

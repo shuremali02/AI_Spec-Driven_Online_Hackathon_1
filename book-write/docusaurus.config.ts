@@ -7,7 +7,13 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Physical AI & Humanoid Robotics',
   tagline: 'Master the fusion of AI and robotics - from ROS 2 fundamentals to conversational AI robots',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
+
+  // Custom fields for configuration (accessible via useDocusaurusContext)
+  customFields: {
+    // RAG Chatbot API endpoint - change this for different environments
+    apiBaseUrl: process.env.API_BASE_URL || 'https://shurem-ragchatbot.hf.space/v1',
+  },
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -83,42 +89,50 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: '📚 Book',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/tutorial-intro',
+              label: 'Getting Started',
+              to: '/docs/',
+            },
+            {
+              label: 'Module 1: ROS 2',
+              to: '/docs/module-1',
             },
           ],
         },
         {
-          title: 'Community',
+          title: '🤖 Resources',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'ROS 2 Documentation',
+              href: 'https://docs.ros.org/en/humble/',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Gazebo Simulation',
+              href: 'https://gazebosim.org/',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'NVIDIA Isaac Sim',
+              href: 'https://developer.nvidia.com/isaac-sim',
             },
           ],
         },
         {
-          title: 'More',
+          title: '🔗 Connect',
           items: [
             {
               label: 'GitHub',
               href: 'https://github.com/shuremali02/AI_Spec-Driven_Online_Hackathon_1',
             },
+            {
+              label: 'Report Issues',
+              href: 'https://github.com/shuremali02/AI_Spec-Driven_Online_Hackathon_1/issues',
+            },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Course. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics. Built for AI Spec-Driven Online Hackathon.`,
     },
     prism: {
       theme: prismThemes.github,

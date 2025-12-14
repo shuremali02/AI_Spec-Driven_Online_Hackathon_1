@@ -1,0 +1,7 @@
+/* General styles for the chatbot component */
+.chatbot-container {
+  position: relative;
+  z-index: 1000;
+}
+
+/* No additional specific styles needed as the components have their own CSS files */

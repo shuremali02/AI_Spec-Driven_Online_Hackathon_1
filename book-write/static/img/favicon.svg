@@ -1,0 +1,21 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+  </defs>
+  <!-- Robot Head -->
+  <rect x="4" y="6" width="24" height="20" rx="4" fill="url(#grad)"/>
+  <!-- Face -->
+  <rect x="6" y="9" width="20" height="14" rx="3" fill="#fff" opacity="0.95"/>
+  <!-- Eyes -->
+  <circle cx="11" cy="15" r="3" fill="url(#grad)"/>
+  <circle cx="21" cy="15" r="3" fill="url(#grad)"/>
+  <!-- Eye highlights -->
+  <circle cx="10" cy="14" r="1" fill="#fff"/>
+  <circle cx="20" cy="14" r="1" fill="#fff"/>
+  <!-- Antenna -->
+  <rect x="14" y="2" width="4" height="5" rx="2" fill="url(#grad)"/>
+  <circle cx="16" cy="2" r="2" fill="#8b9cf4"/>
+</svg>
