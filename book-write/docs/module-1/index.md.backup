@@ -9,7 +9,6 @@ keywords: [ROS 2, robot middleware, Physical AI, URDF, rclpy]
 
 import ChapterCard from '@site/src/components/ChapterCard';
 
-
 # Module 1: The Robotic Nervous System (ROS 2)
 
 ## Purpose
@@ -201,15 +200,40 @@ Beyond static content, this module integrates interactive components for an enha
 ### Chapter Cards
 
 We utilize custom Docusaurus components for interactive chapter navigation. These cards provide a visually engaging and organized way to explore each chapter's content, detailing its duration, difficulty, and key topics at a glance.
+```
+-->
+
+---
+
+# ⭐ Fix Step 2 — Progress Component bhi JSX me convert karo
+
+Replace this ❌:
+
+````md
+```tsx
+<ModuleProgress
+  moduleNumber={1}
+  totalChapters={4}
+  estimatedHours="18-22"
+/>
+```
 
 ### Progress Indicator (Optional)
 
 A visual progress indicator will help you track your learning journey through the module and understand the estimated time commitment.
 
+<!-- \`\`\`tsx
+<ModuleProgress
+  moduleNumber={1}
+  totalChapters={4}
+  estimatedHours="18-22"
+/> -->
+\`\`\`
+
 ## Navigation
 
 *   **Next:** [Chapter 1: Introduction to Physical AI →](./chapter-01-intro-physical-ai)
-*   **Previous:** [Getting Started ←](/docs/) (Course overview and prerequisites)
+*   **Previous:** [Getting Started ←](../getting-started/index) (If a "Getting Started" section exists at the parent level)
 
 The sidebar will also provide direct links to this overview page and all five chapters within Module 1, ensuring seamless navigation.
 
@@ -225,7 +249,7 @@ The sidebar will also provide direct links to this overview page and all five ch
 
 To integrate this module correctly into the Docusaurus navigation, the `sidebars.ts` file needs the following configuration:
 
-```typescript
+\`\`\`typescript
 // book-write/sidebars.ts
 {
   type: 'category',
@@ -238,7 +262,7 @@ To integrate this module correctly into the Docusaurus navigation, the `sidebars
     'module-1/chapter-02-ros2-architecture',
     'module-1/chapter-03-first-nodes',
     'module-1/chapter-04-urdf',
-    'module-1/chapter-05-ros2-launch-files',
+    'module-1/module-1-chapter-05-ros2-launch-files',
   ],
 }
-```
+\`\`\`

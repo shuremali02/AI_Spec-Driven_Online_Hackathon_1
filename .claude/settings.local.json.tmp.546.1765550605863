@@ -15,7 +15,7 @@
       "Bash(python -c \"\nimport sys\nsys.path.insert(0, ''.'')\ntry:\n    import main\n    print(''Successfully imported main.py'')\n    print(''Available endpoints:'')\n    for route in main.app.routes:\n        print(f''  {route.methods} {route.path}'')\nexcept Exception as e:\n    print(f''Error importing main: {e}'')\n    import traceback\n    traceback.print_exc()\n\")",
       "Bash(.specify/scripts/bash/check-prerequisites.sh --json)",
       "Bash(.specify/scripts/bash/check-prerequisites.sh --json --paths-only)",
-      "WebSearch"
+      "Bash(.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)"
     ],
     "deny": [],
     "ask": []

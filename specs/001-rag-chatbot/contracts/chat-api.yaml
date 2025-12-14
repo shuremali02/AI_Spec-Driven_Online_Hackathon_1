@@ -1,0 +1,97 @@
+# API Contract: RAG Chatbot for Physical AI Textbook
+
+## Chat API
+
+### POST /api/chat
+Initiates a new conversation or continues an existing one with the RAG chatbot.
+
+**Request Body:**
+```json
+{
+  "message": "string (required) - The user's question or message",
+  "conversation_id": "string (optional) - Existing conversation ID to continue",
+  "user_context": {
+    "user_type": "enum (optional) - 'student', 'educator', 'anonymous'",
+    "chapter_context": "string (optional) - Current chapter being read"
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "conversation_id": "string - Unique identifier for the conversation",
+  "response": "string - The chatbot's response to the user's message",
+  "citations": [
+    {
+      "chapter": "string - The textbook chapter referenced",
+      "section": "string - The specific section referenced",
+      "content_snippet": "string - Brief excerpt from the cited content",
+      "page_reference": "string - Page number or location reference"
+    }
+  ],
+  "timestamp": "string - ISO 8601 timestamp of the response"
+}
+```
+
+**Error Responses:**
+- `400 Bad Request`: Invalid request format
+- `429 Too Many Requests`: Rate limit exceeded
+- `500 Internal Server Error`: Processing error
+
+### GET /api/health
+Health check endpoint to verify the service is running.
+
+**Response:**
+```json
+{
+  "status": "string - Service health status ('healthy')",
+  "timestamp": "string - ISO 8601 timestamp",
+  "version": "string - API version"
+}
+```
+
+## Analytics API
+
+### POST /api/analytics/feedback
+Submit user feedback about a response.
+
+**Request Body:**
+```json
+{
+  "conversation_id": "string - The conversation ID",
+  "message_id": "string - The specific message ID being rated",
+  "satisfaction_rating": "integer (1-5) - User rating of the response",
+  "feedback_text": "string (optional) - Additional feedback text"
+}
+```
+
+**Response:**
+```json
+{
+  "status": "string - 'success' or error message",
+  "feedback_id": "string - Unique identifier for the feedback record"
+}
+```
+
+## Configuration API
+
+### GET /api/config
+Retrieve configuration options for the chat interface.
+
+**Response:**
+```json
+{
+  "features": {
+    "citations_enabled": "boolean - Whether citations are shown",
+    "user_context_required": "boolean - Whether user context is required",
+    "rate_limiting_enabled": "boolean - Whether rate limiting is active"
+  },
+  "limits": {
+    "max_message_length": "integer - Maximum length of user messages",
+    "max_conversation_length": "integer - Maximum messages in a conversation",
+    "rate_limit_requests": "integer - Number of requests allowed per time window",
+    "rate_limit_window": "integer - Time window in seconds for rate limiting"
+  }
+}
+```
