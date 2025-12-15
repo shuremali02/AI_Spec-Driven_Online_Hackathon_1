@@ -12,6 +12,43 @@ const TextSelectionPopup: React.FC<TextSelectionPopupProps> = ({ onAskAboutSelec
   const popupRef = useRef<HTMLDivElement>(null);
   const justShownRef = useRef(false);
 
+  // Shared function to handle selection (works for both mouse and touch)
+  const handleSelection = useCallback(() => {
+    const selection = window.getSelection();
+    const text = selection?.toString().trim();
+
+    if (text && text.length > 3 && text.length < 1000) {
+      try {
+        const range = selection?.getRangeAt(0);
+        const rect = range?.getBoundingClientRect();
+
+        if (rect && rect.width > 0) {
+          // Position popup above the selection (using fixed positioning)
+          const x = rect.left + rect.width / 2;
+          const y = rect.top - 10; // No scrollY needed for fixed position
+
+          setPosition({ x, y });
+          setSelectedText(text);
+          setIsVisible(true);
+          justShownRef.current = true;
+
+          // Reset justShown after a brief moment
+          setTimeout(() => {
+            justShownRef.current = false;
+          }, 200);
+        }
+      } catch (err) {
+        // Selection might be invalid
+        console.log('Selection error:', err);
+      }
+    } else {
+      if (!justShownRef.current) {
+        setIsVisible(false);
+        setSelectedText('');
+      }
+    }
+  }, []);
+
   const handleMouseUp = useCallback((e: MouseEvent) => {
     // Ignore if clicking on the popup itself
     if (popupRef.current?.contains(e.target as Node)) {
@@ -20,41 +57,9 @@ const TextSelectionPopup: React.FC<TextSelectionPopupProps> = ({ onAskAboutSelec
 
     // Small delay to let selection complete
     setTimeout(() => {
-      const selection = window.getSelection();
-      const text = selection?.toString().trim();
-
-      if (text && text.length > 3 && text.length < 1000) {
-        try {
-          const range = selection?.getRangeAt(0);
-          const rect = range?.getBoundingClientRect();
-
-          if (rect && rect.width > 0) {
-            // Position popup above the selection (using fixed positioning)
-            const x = rect.left + rect.width / 2;
-            const y = rect.top - 10; // No scrollY needed for fixed position
-
-            setPosition({ x, y });
-            setSelectedText(text);
-            setIsVisible(true);
-            justShownRef.current = true;
-
-            // Reset justShown after a brief moment
-            setTimeout(() => {
-              justShownRef.current = false;
-            }, 200);
-          }
-        } catch (err) {
-          // Selection might be invalid
-          console.log('Selection error:', err);
-        }
-      } else {
-        if (!justShownRef.current) {
-          setIsVisible(false);
-          setSelectedText('');
-        }
-      }
+      handleSelection();
     }, 10);
-  }, []);
+  }, [handleSelection]);
 
   const handleClickOutside = useCallback((e: MouseEvent) => {
     // Don't hide if we just showed the popup
@@ -76,21 +81,59 @@ const TextSelectionPopup: React.FC<TextSelectionPopupProps> = ({ onAskAboutSelec
     }
   }, []);
 
+  // Handle touch selection (mobile)
+  const handleTouchEnd = useCallback((e: TouchEvent) => {
+    // Ignore if touching on the popup itself
+    if (popupRef.current?.contains(e.target as Node)) {
+      return;
+    }
+
+    // Longer delay for mobile to let selection complete
+    setTimeout(() => {
+      handleSelection();
+    }, 300);
+  }, [handleSelection]);
+
+  // Handle selectionchange event (more reliable on mobile)
+  const handleSelectionChange = useCallback(() => {
+    // Use longer debounce for selection changes
+    setTimeout(() => {
+      const selection = window.getSelection();
+      const text = selection?.toString().trim();
+
+      // Only trigger if there's meaningful selection
+      if (text && text.length > 3) {
+        handleSelection();
+      }
+    }, 500);
+  }, [handleSelection]);
+
   useEffect(() => {
+    // Mouse events (desktop)
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mousedown', handleClickOutside);
+
+    // Touch events (mobile)
+    document.addEventListener('touchend', handleTouchEnd);
+
+    // Selection change event (helps with mobile long-press selection)
+    document.addEventListener('selectionchange', handleSelectionChange);
+
+    // Other events
     document.addEventListener('scroll', handleScroll, true);
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchend', handleTouchEnd);
+      document.removeEventListener('selectionchange', handleSelectionChange);
       document.removeEventListener('scroll', handleScroll, true);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleMouseUp, handleClickOutside, handleScroll, handleKeyDown]);
+  }, [handleMouseUp, handleClickOutside, handleTouchEnd, handleSelectionChange, handleScroll, handleKeyDown]);
 
-  const handleAskClick = (e: React.MouseEvent) => {
+  const handleAskClick = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -114,8 +157,15 @@ const TextSelectionPopup: React.FC<TextSelectionPopupProps> = ({ onAskAboutSelec
         top: `${position.y}px`,
       }}
       onMouseDown={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
     >
-      <button className="ask-button" onClick={handleAskClick} onMouseDown={(e) => e.stopPropagation()}>
+      <button
+        className="ask-button"
+        onClick={handleAskClick}
+        onTouchEnd={handleAskClick}
+        onMouseDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
+      >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M8.5 19H8C4 19 2 18 2 13V8C2 4 4 2 8 2H16C20 2 22 4 22 8V13C22 17 20 19 16 19H15.5C15.19 19 14.89 19.15 14.7 19.4L13.2 21.4C12.54 22.28 11.46 22.28 10.8 21.4L9.3 19.4C9.14 19.18 8.77 19 8.5 19Z" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M12 11V11.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

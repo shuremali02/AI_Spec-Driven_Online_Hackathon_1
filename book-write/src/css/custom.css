@@ -412,3 +412,71 @@ button:focus-visible {
     display: none !important;
   }
 }
+
+/* =============================================
+   Mobile Sidebar and Chatbot Z-Index Fixes
+   ============================================= */
+
+/* Ensure Docusaurus mobile sidebar toggle button is always clickable */
+@media (max-width: 996px) {
+  /* Navbar toggle button - higher z-index */
+  .navbar__toggle {
+    z-index: 200 !important;
+    position: relative !important;
+  }
+
+  /* Mobile sidebar - MUST be above main content */
+  .navbar-sidebar {
+    z-index: 10000 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 75vw !important;
+    max-width: 350px !important;
+    height: 100vh !important;
+    background: var(--ifm-background-color) !important;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  /* Sidebar backdrop - below sidebar but above content */
+  .navbar-sidebar__backdrop {
+    z-index: 9999 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Ensure navbar stays on top of main content */
+  .navbar {
+    z-index: 200 !important;
+  }
+
+  /* Main content container - lower z-index */
+  .main-wrapper,
+  main {
+    z-index: 1 !important;
+    position: relative !important;
+  }
+
+  /* Homepage/landing page content - lower z-index */
+  .hero,
+  .homepage,
+  [class*="heroBanner"],
+  .container {
+    z-index: 1 !important;
+    position: relative !important;
+  }
+
+  /* Chatbot button - below sidebar but above main content */
+  .chatbot-floating-button {
+    z-index: 50 !important;
+  }
+
+  /* Chatbot window overlay - highest when chat is open */
+  .chat-window-overlay {
+    z-index: 20000 !important;
+  }
+}

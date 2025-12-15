@@ -27,7 +27,7 @@ const Chatbot: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={`chatbot-container ${isChatOpen ? 'chat-open' : ''}`}>
       <TextSelectionPopup onAskAboutSelection={handleAskAboutSelection} />
       <FloatingButton onClick={toggleChat} isOpen={isChatOpen} />
       <ChatWindow
@@ -36,7 +36,7 @@ const Chatbot: React.FC = () => {
         initialQuery={selectedTextQuery}
         onQueryProcessed={clearSelectedTextQuery}
       />
-    </>
+    </div>
   );
 };
 

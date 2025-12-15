@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
-  z-index: 1000;
+  z-index: 99;  /* Lower than Docusaurus navbar (z-index: 200) to avoid conflicts */
   transition: all 0.3s ease;
   font-size: 24px;
   overflow: visible;
