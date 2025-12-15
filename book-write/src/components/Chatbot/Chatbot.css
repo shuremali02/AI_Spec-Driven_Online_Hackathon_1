@@ -1,7 +1,12 @@
 /* General styles for the chatbot component */
 .chatbot-container {
   position: relative;
-  z-index: 1000;
+  z-index: 99;  /* Lower than Docusaurus sidebar toggle (z-index: 200) */
+}
+
+/* When chat is open, raise z-index to overlay everything */
+.chatbot-container.chat-open {
+  z-index: 9999;
 }
 
 /* No additional specific styles needed as the components have their own CSS files */
