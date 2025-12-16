@@ -1,0 +1,355 @@
+openapi: 3.1.0
+info:
+  title: Auth & Profile API
+  description: |
+    Application API for user profile management. Authentication is handled by Better-Auth separately.
+    All endpoints except /api/health require a valid Better-Auth session cookie.
+  version: 1.0.0
+  contact:
+    name: Auth-Personalization Team
+
+servers:
+  - url: http://localhost:3001
+    description: Local development
+  - url: https://auth.example.com
+    description: Production
+
+tags:
+  - name: Profile
+    description: User profile CRUD operations
+  - name: Health
+    description: Service health check
+
+paths:
+  /api/profile:
+    post:
+      tags:
+        - Profile
+      summary: Create user profile
+      description: |
+        Create a new profile for the authenticated user. Must be called immediately after
+        Better-Auth signup. If this fails, the frontend should trigger rollback by deleting
+        the Better-Auth user.
+      operationId: createProfile
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProfileRequest'
+            example:
+              software_background:
+                programming_languages: ["Python", "JavaScript/TypeScript"]
+                frameworks_platforms: ["ROS/ROS 2", "PyTorch"]
+                experience_level: "intermediate"
+              hardware_background:
+                device_type: "laptop"
+                operating_system: "linux"
+                system_capability: "high"
+      responses:
+        '201':
+          description: Profile created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProfileResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missing_field:
+                  value:
+                    error: "validation_error"
+                    field: "programming_languages"
+                    message: "At least one programming language is required"
+                invalid_enum:
+                  value:
+                    error: "validation_error"
+                    field: "experience_level"
+                    message: "Invalid experience level. Must be one of: beginner, intermediate, advanced, expert"
+        '401':
+          description: Unauthorized - no valid session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "unauthorized"
+                message: "Valid session required"
+        '409':
+          description: Profile already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "conflict"
+                message: "Profile already exists for this user"
+
+    get:
+      tags:
+        - Profile
+      summary: Get current user's profile
+      description: Retrieve the profile for the authenticated user
+      operationId: getProfile
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
+        '401':
+          description: Unauthorized - no valid session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Profile not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "not_found"
+                message: "Profile not found for this user"
+
+    put:
+      tags:
+        - Profile
+      summary: Update current user's profile
+      description: Update the profile for the authenticated user. All fields in the request body will replace existing values.
+      operationId: updateProfile
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateProfileResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - no valid session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Profile not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/health:
+    get:
+      tags:
+        - Health
+      summary: Health check
+      description: Check if the service is running
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: better-auth.session_token
+      description: Better-Auth session cookie (automatically set by Better-Auth)
+
+  schemas:
+    # Enums
+    ExperienceLevel:
+      type: string
+      enum:
+        - beginner
+        - intermediate
+        - advanced
+        - expert
+      description: User's experience level in software development
+
+    DeviceType:
+      type: string
+      enum:
+        - desktop
+        - laptop
+        - tablet
+        - mobile
+        - embedded
+      description: User's primary device type
+
+    OperatingSystem:
+      type: string
+      enum:
+        - windows
+        - macos
+        - linux
+        - other
+      description: User's primary operating system
+
+    SystemCapability:
+      type: string
+      enum:
+        - low
+        - medium
+        - high
+      description: User's system capability level
+
+    # Background objects
+    SoftwareBackground:
+      type: object
+      required:
+        - programming_languages
+        - frameworks_platforms
+        - experience_level
+      properties:
+        programming_languages:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          description: Programming languages the user knows
+          example: ["Python", "JavaScript/TypeScript"]
+        frameworks_platforms:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          description: Frameworks and platforms the user is familiar with
+          example: ["ROS/ROS 2", "PyTorch"]
+        experience_level:
+          $ref: '#/components/schemas/ExperienceLevel'
+
+    HardwareBackground:
+      type: object
+      required:
+        - device_type
+        - operating_system
+        - system_capability
+      properties:
+        device_type:
+          $ref: '#/components/schemas/DeviceType'
+        operating_system:
+          $ref: '#/components/schemas/OperatingSystem'
+        system_capability:
+          $ref: '#/components/schemas/SystemCapability'
+
+    # Request schemas
+    CreateProfileRequest:
+      type: object
+      required:
+        - software_background
+        - hardware_background
+      properties:
+        software_background:
+          $ref: '#/components/schemas/SoftwareBackground'
+        hardware_background:
+          $ref: '#/components/schemas/HardwareBackground'
+
+    UpdateProfileRequest:
+      type: object
+      properties:
+        software_background:
+          $ref: '#/components/schemas/SoftwareBackground'
+        hardware_background:
+          $ref: '#/components/schemas/HardwareBackground'
+      description: At least one of software_background or hardware_background must be provided
+
+    # Response schemas
+    CreateProfileResponse:
+      type: object
+      properties:
+        profile_id:
+          type: string
+          format: uuid
+          description: The unique identifier for the profile
+        created_at:
+          type: string
+          format: date-time
+          description: When the profile was created
+
+    UpdateProfileResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Profile updated successfully"
+        updated_at:
+          type: string
+          format: date-time
+          description: When the profile was updated
+
+    ProfileResponse:
+      type: object
+      properties:
+        auth_user_id:
+          type: string
+          description: The Better-Auth user ID
+        email:
+          type: string
+          format: email
+          description: User's email (from Better-Auth context)
+        software_background:
+          $ref: '#/components/schemas/SoftwareBackground'
+        hardware_background:
+          $ref: '#/components/schemas/HardwareBackground'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "ok"
+        timestamp:
+          type: string
+          format: date-time
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error code
+        field:
+          type: string
+          description: Field that caused the error (for validation errors)
+        message:
+          type: string
+          description: Human-readable error message

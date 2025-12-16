@@ -1,0 +1,87 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 16px;
+  box-shadow: var(--ifm-global-shadow-md);
+  transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+  animation: fadeInUp 400ms ease-out both;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ifm-global-shadow-tl);
+  border-color: var(--ifm-color-primary-light);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.icon {
+  height: 150px;
+  width: 150px;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ifm-heading-color);
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-font-color-base);
+  margin: 0;
+}
+
+/* Light mode specific styling */
+:root .card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+/* Dark mode specific styling */
+[data-theme='dark'] .card {
+  background: var(--ifm-background-surface-color);
+  border-color: #334155;
+}
+
+[data-theme='dark'] .card:hover {
+  border-color: var(--ifm-color-primary);
+}
