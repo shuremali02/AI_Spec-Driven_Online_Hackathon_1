@@ -1,102 +1,226 @@
 <!--
-Version change: 0.1.5 -> 0.1.6 (PATCH: Added Part-2 RAG Chatbot for Physical AI Textbook with Gemini LLM integration)
-List of modified principles:
-- Added Part-2: RAG Chatbot for Physical AI Textbook
-- Added new section: Part-2 Core Principles
-- Added new section: Part-2 Key Standards
-- Added new section: Part-2 Constraints
-- Added new section: Part-2 Success Criteria
-Added sections: Part-2 (complete RAG Chatbot specification)
-Removed sections: None
+Version change: 0.1.6 -> 0.1.7
+PATCH: Added Authentication, Personalization & Translation Bonus Feature Governance
+
+Added sections:
+- Core Principle V: Authentication-First Access Control
+- Key Standard VII: Authentication & User Profile Standard
+- Key Standard VIII: Translation Feature Standard
+- Success Criteria V: Bonus Feature Eligibility
+
+Removed sections:
+- None
+
 Templates requiring updates:
 - .specify/templates/plan-template.md: ⚠ pending (review for alignment)
 - .specify/templates/spec-template.md: ⚠ pending (review for alignment)
 - .specify/templates/tasks-template.md: ⚠ pending (review for alignment)
 - .specify/templates/commands/*.md: ⚠ pending (review for alignment)
+
 Follow-up TODOs:
-- Update templates to include Part-2 requirements
-- Ensure all Part-2 functional requirements are implemented in artifacts
+- Ensure Better-Auth integration aligns with authentication standard
+- Verify translate_to_urdu skill exists and is functional
+- Update feature specs to include bonus feature requirements
 -->
 # Project Constitution: AI/Spec-Driven Book with RAG Chatbot
 
+**Version**: 0.1.7
+**Previous Version**: 0.1.6
+**Ratified**: 2025-12-09
+**Last Amended**: 2025-12-15
+
+---
+
 ## Purpose
-This constitution outlines the core principles, standards, constraints, and success criteria for creating a comprehensive technical book with integrated RAG chatbot using Spec-Kit Plus, Claude Code, and Docusaurus. Its primary objective is to ensure the production of high-quality, accurate, and consistent educational content with advanced AI features for readers with foundational CS/AI knowledge.
+
+This constitution defines the governing principles, standards, constraints, and success criteria for building a **Spec-Driven AI-powered technical textbook** with:
+
+- A Retrieval-Augmented Generation (RAG) chatbot
+- Secure user authentication
+- Personalized learning paths
+- Optional Urdu translation features
+
+The goal is to ensure **educational quality**, **technical accuracy**, **security**, and **hackathon compliance**.
+
+---
 
 ## Core Principles
 
 ### I. Accuracy and Verifiability
-All technical explanations, examples, and claims within the book and RAG chatbot MUST be factually accurate and verifiable. No fabricated information, APIs, or tools are permitted. The RAG system MUST provide accurate answers based on the book content and properly cite sources when applicable.
+All textbook content, chatbot responses, personalized explanations, and translated output MUST be factually accurate and verifiable. Fabricated APIs, tools, or claims are strictly prohibited.
+
+---
 
 ### II. Clarity and Educational Value
-Content MUST be clear, concise, and designed to effectively educate readers. It MUST target a Flesch-Kincaid Grade Level of 10-12, maintain an average sentence length of no more than 20 words, and utilize active voice in at least 75% of sentences. Complex concepts MUST be broken down into understandable components, utilizing examples, diagrams, and simple language. Personalization features MUST enhance clarity for different user backgrounds.
+Content MUST be written for learners with foundational CS/AI knowledge.
+Personalization and translation MUST enhance understanding without changing technical meaning.
+
+---
 
 ### III. Consistency and Uniformity
-A unified voice, writing style, and structural format MUST be maintained across all chapters, sections, and multi-language versions of the book. This includes consistent terminology, formatting, and presentation of code and diagrams. The RAG chatbot MUST maintain consistent responses aligned with the book content.
+The system MUST maintain consistent terminology, tone, and structure across:
+- Original English content
+- Personalized content
+- Urdu translations
+- RAG chatbot responses
+
+---
 
 ### IV. Reproducibility
-All code examples, technical instructions, and RAG system deployment processes MUST be reproducible by the reader. This ensures that readers can follow along, validate the concepts presented, and deploy the complete system.
+All code, infrastructure, indexing pipelines, authentication flows, and deployment steps MUST be reproducible.
+
+---
+
+### V. Authentication-First Access Control
+All **bonus features** MUST require authentication.
+
+- Anonymous users MAY read static textbook content
+- Anonymous users MUST NOT access:
+  - Translation features
+  - Personalization
+  - User-specific analytics
+  - Bonus-point functionality
+
+---
 
 ## Key Standards
 
 ### I. Docusaurus-Compatible Markdown
-All book content MUST be authored using GitHub-flavored Markdown, compatible with Docusaurus for proper rendering and deployment.
+All textbook content MUST be written in GitHub-flavored Markdown compatible with Docusaurus.
+
+---
 
 ### II. Structured Chapters
-Each chapter MUST adhere to a consistent structure, including (but not limited to): an introduction, detailed explanation of concepts, practical examples, optional exercises, and a summary of key takeaways.
+Each chapter MUST include:
+- Introduction
+- Core concepts
+- Examples
+- Optional exercises
+- Summary
+
+---
 
 ### III. Code Block Formatting
-Code examples MUST be presented in fenced code blocks with appropriate language tags (e.g., `python`, `javascript`).
+All code examples MUST use fenced blocks with proper language tags.
+
+---
 
 ### IV. Diagram Inclusion
-Diagrams (e.g., Mermaid, ASCII art) are permitted and encouraged where they enhance clarity and understanding of complex systems or flows.
+Mermaid or ASCII diagrams SHOULD be used where helpful.
+
+---
 
 ### V. RAG Chatbot Integration
-The RAG chatbot MUST be seamlessly integrated into the book interface, utilize OpenAI Agents/ChatKit SDKs, FastAPI, Neon Serverless Postgres, and Qdrant Cloud, and be able to answer questions based on book content and user-selected text.
+The chatbot MUST:
+- Use FastAPI backend
+- Use Qdrant for vector storage
+- Follow Spec-Kit Plus and OpenAI Agents SDK patterns
+- Respond strictly from textbook content only
 
-### VI. Personalization Features
-When implemented, personalization features MUST adapt content based on user background information collected during signup and provide appropriate learning paths for different skill levels.
+---
 
-### VII. Translation Features
-When implemented, translation features MUST maintain accuracy and readability while preserving technical terminology and code examples appropriately for the target language.
+### VI. Personalization Standard
+Personalization MUST be based on **user background data collected at signup**, including:
+- Software background
+- Hardware background
+- Experience level
+
+Personalization MAY adjust:
+- Explanation depth
+- Examples
+- Learning guidance
+
+---
+
+### VII. Authentication & User Profile Standard
+The system MUST implement:
+- Signup and Signin using **Better-Auth**
+- Mandatory background questions during signup
+- Secure session handling
+- Access control enforcement for all bonus features
+
+---
+
+### VIII. Translation Feature Standard
+When implemented:
+
+- Translation MUST be user-triggered via a button at the start of each chapter
+- Translation MUST be available **only to logged-in users**
+- Translation MUST use the existing **`translate_to_urdu` skill**
+- Technical terms and code blocks MUST NOT be altered
+- Original English content MUST remain accessible
+
+---
 
 ## Constraints
 
 ### I. Original Content Mandate
-All book content MUST be original writing. Copying from external sources, including documentation or articles, is strictly prohibited. Information gathered from external sources MUST be synthesized and rephrased.
+All textbook content MUST be original. External sources may only be used for reference and MUST be rephrased.
+
+---
 
 ### II. No Hallucinations
-The AI agent MUST NOT generate or include any hallucinated content, unverifiable claims, or non-existent APIs/tools. All information MUST be grounded in verifiable facts. The RAG system MUST NOT generate responses that contradict the book content. The RAG system MUST implement content validation to ensure all responses are grounded in actual textbook content before delivery. The system MUST provide fallback responses when no relevant textbook content is found to answer a query.
+The RAG system MUST NOT generate responses outside textbook scope.
+Fallback responses are REQUIRED when content is unavailable.
 
-### IV. Content Scope Validation
-The RAG system MUST only respond to questions about topics that are actually covered in the textbook content. The system MUST verify that requested topics exist in the textbook before attempting to generate responses. If a user asks about a topic not covered in the textbook, the system MUST clearly indicate that the information is not available in the textbook and may suggest related topics that are covered.
+---
 
-### V. Docusaurus Deployment Readiness
-The entire output, including content and structure, MUST be ready for compilation and deployment via Docusaurus on GitHub Pages without requiring significant manual intervention.
+### III. Content Scope Validation
+The system MUST verify that a topic exists in the textbook before answering.
 
-### VI. API and Service Compliance
-All integrations with OpenAI, Neon, Qdrant, and Better Auth MUST comply with their respective terms of service and usage policies.
+---
+
+### IV. Docusaurus Deployment Readiness
+The project MUST build and deploy cleanly using Docusaurus without manual fixes.
+
+---
+
+### V. API and Service Compliance
+All integrations (Gemini, OpenAI, Qdrant, Neon, Better-Auth) MUST comply with their respective terms of service.
+
+---
 
 ## Success Criteria
 
-### I. Successful Docusaurus Compilation
-The complete book project MUST compile cleanly within the Docusaurus framework, producing a functional website without errors or warnings.
+### I. Compilation Success
+The textbook MUST compile successfully in Docusaurus.
 
-### II. Structural and Stylistic Cohesion
-All chapters and sections MUST consistently adhere to the defined structural and stylistic guidelines, ensuring a seamless reading experience.
+---
 
-### III. Technical Accuracy
-The technical content throughout the book MUST be correct, up-to-date, and free from errors that would mislead or confuse readers.
+### II. Educational Effectiveness
+Content MUST meet clarity and learning effectiveness goals.
 
-### IV. Effective Educational Content
-The explanations MUST be clear, engaging, and effectively convey complex technical topics to the target audience with foundational CS/AI knowledge.
+---
 
-### V. RAG Chatbot Functionality
-The integrated RAG chatbot MUST successfully answer user questions about the book content, support text selection-based queries, and provide accurate, contextually relevant responses.
+### III. RAG Chatbot Reliability
+The chatbot MUST:
+- Provide accurate answers
+- Cite textbook sections
+- Handle edge cases gracefully
 
-### VI. Deployment Success
-The complete system (book + RAG chatbot) MUST be deployable to GitHub Pages with all functionality intact.
+---
+
+### IV. Deployment Success
+The system MUST be deployable without runtime or build errors.
+
+---
+
+### V. Bonus Feature Eligibility
+To qualify for hackathon bonus points:
+
+- Signup & Signin using Better-Auth MUST function correctly
+- Background questions MUST be mandatory at signup
+- Personalization MUST be observable post-login
+- Urdu translation MUST:
+  - Be user-triggered
+  - Use `translate_to_urdu` skill
+  - Require authentication
+
+---
 
 ## Part-2: RAG Chatbot for Physical AI Textbook
+
+All Part-2 principles, standards, constraints, and success criteria from **v0.1.6** remain valid and unchanged.
 
 ### Part-2 Core Principles
 
@@ -298,27 +422,38 @@ All functional requirements that involve generating responses, providing explana
 - **SC-009**: Student engagement metrics show increased time spent on textbook content when the chatbot is available
 - **SC-010**: The system responds to 99% of valid queries without errors or crashes
 
+---
+
 ## Agent Behavior
 
 ### I. Clarification Seeking
-The AI agent MUST proactively ask for clarification when encountering ambiguity, uncertainty, or missing information in the requirements or content generation process. Never guess.
+The AI agent MUST ask for clarification when requirements are ambiguous.
+
+---
 
 ### II. Internal Consistency
-The AI agent MUST ensure internal consistency across all generated content, adhering to established terminology, style guides, and technical facts.
+All outputs MUST remain internally consistent.
+
+---
 
 ### III. Simplification and Visualization
-The AI agent MUST prioritize clarity through the use of simple explanations, relevant examples, and appropriate diagrams to illustrate concepts. Avoid unnecessary complexity.
+The agent SHOULD prefer clear explanations, examples, and diagrams.
+
+---
 
 ### IV. Utility and Accuracy
-Every output from the AI agent MUST be useful, well-structured, accurate, and directly contribute to the project's objectives.
+Every output MUST directly support project goals.
 
-### V. Documentation Structure Adherence
-For all documentation, book-writing, or Docusaurus-related tasks, the AI agent MUST always read and follow the existing documentation structure before producing new content. The agent MUST always connect to the Context7 MCP server first, retrieve the current documentation from the project, and ensure all new or edited content strictly aligns with the existing structure, style, and organization found in Context7.
+---
 
-## Output Rules
-The project constitution MUST be presented in a cleanly structured Markdown format, adhering to the specified headings: Purpose, Core Principles, Key Standards, Constraints, Success Criteria, Part-2, Agent Behavior, and Output Rules.
+### V. Documentation Alignment
+All outputs MUST align with existing documentation structure and Context7 references.
+
+---
 
 ## Governance
-This constitution serves as the foundational governance document for the AI/Spec-Driven Book with RAG Chatbot project. Amendments require documented rationale, stakeholder approval, and a clear migration plan for affected content.
 
-**Version**: 0.1.6 | **Ratified**: 2025-12-09 | **Last Amended**: 2025-12-13
+This constitution is the authoritative governance document.
+All future specs, plans, and tasks MUST comply with it.
+
+Amendments require documented rationale, stakeholder approval, and a clear migration plan for affected content.

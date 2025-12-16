@@ -434,7 +434,6 @@ button:focus-visible {
     width: 75vw !important;
     max-width: 350px !important;
     height: 100vh !important;
-    background: var(--ifm-background-color) !important;
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3) !important;
   }
 
@@ -478,5 +477,84 @@ button:focus-visible {
   /* Chatbot window overlay - highest when chat is open */
   .chat-window-overlay {
     z-index: 20000 !important;
+  }
+}
+
+/* =============================================
+   Sidebar Transparency Fix (Critical Bug - US1)
+   ============================================= */
+
+/* Light mode - explicit solid white background */
+.navbar-sidebar {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Dark mode - solid dark background */
+[data-theme='dark'] .navbar-sidebar {
+  background-color: var(--ifm-background-color) !important;
+}
+
+/* Remove any backdrop-filter that may cause transparency issues */
+.navbar-sidebar,
+.navbar-sidebar__brand,
+.navbar-sidebar__items {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Ensure sidebar items inherit solid background */
+.navbar-sidebar__items {
+  background-color: inherit;
+}
+
+/* Ensure sidebar brand section is also opaque */
+.navbar-sidebar__brand {
+  background-color: inherit;
+}
+
+/* Fix text selection on mobile - ensure touch devices can interact */
+@media (max-width: 996px) {
+  .navbar-sidebar,
+  .navbar-sidebar * {
+    -webkit-user-select: auto;
+    user-select: auto;
+  }
+}
+
+/* Fix sidebar menu link colors in light mode */
+.navbar-sidebar .menu__link {
+  color: var(--ifm-font-color-base) !important;
+}
+
+.navbar-sidebar .menu__link:hover {
+  color: var(--ifm-color-primary) !important;
+}
+
+.navbar-sidebar .menu__link--active {
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Dark mode sidebar links */
+[data-theme='dark'] .navbar-sidebar .menu__link {
+  color: var(--ifm-font-color-base) !important;
+}
+
+/* Sidebar title/brand text color fix */
+.navbar-sidebar__brand .navbar__title {
+  color: var(--ifm-font-color-base) !important;
+}
+
+[data-theme='dark'] .navbar-sidebar__brand .navbar__title {
+  color: white !important;
+}
+
+/* Mobile sidebar minimal fixes - do not break default Docusaurus behavior */
+@media (max-width: 996px) {
+  /* Only fix auth container overflow */
+  .navbar-sidebar .authContainer {
+    width: calc(100% - 16px) !important;
+    margin: 8px !important;
+    box-sizing: border-box !important;
   }
 }

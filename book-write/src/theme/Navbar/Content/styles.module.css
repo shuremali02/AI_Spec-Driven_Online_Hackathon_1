@@ -1,0 +1,13 @@
+.navbarAuthWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding-right: 8px;
+}
+
+/* Hide on mobile - auth will be in sidebar */
+@media (max-width: 996px) {
+  .navbarAuthWrapper {
+    display: none;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AuthProvider } from '../components/Auth/AuthProvider';
 
 // Lazy load Chatbot component only on client-side
 function ChatbotWrapper() {
@@ -16,11 +17,14 @@ function ChatbotWrapper() {
 }
 
 // This component wraps the entire app and adds the chatbot globally
+// AuthProvider is added at root level for app-wide auth state access
 export default function Root({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      {children}
-      <ChatbotWrapper />
-    </>
+    <AuthProvider>
+      <>
+        {children}
+        <ChatbotWrapper />
+      </>
+    </AuthProvider>
   );
 }

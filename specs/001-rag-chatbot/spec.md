@@ -153,9 +153,16 @@ An educator or course administrator wants to understand how students are interac
 - What happens when a student asks a question that could be answered from multiple chapters with conflicting information?
 - How does the system handle ambiguous queries that could refer to different concepts?
 - What occurs when the chatbot cannot find relevant content in the textbook to answer a question?
-- How does the system respond to inappropriate or off-topic questions from students?
-- What happens when the vector database is temporarily unavailable during a chat session?
-- How does the system handle extremely long or complex questions that might exceed token limits?
+- ~~How does the system respond to inappropriate or off-topic questions from students?~~ **Resolved:** Polite redirect - acknowledge the question, explain it's outside textbook scope, suggest related textbook topics
+- What happens when the vector database is temporarily unavailable during a chat session? **Resolved:** Return graceful fallback message (FR-074)
+- ~~How does the system handle extremely long or complex questions that might exceed token limits?~~ **Resolved:** Truncate with notification - process first N tokens and inform user that question was truncated
+
+### Edge Case Resolution Requirements
+
+- **FR-081**: System MUST respond to off-topic questions with a polite redirect that acknowledges the question, explains it is outside textbook scope, and suggests related textbook topics the user may find helpful
+- **FR-082**: System MUST NOT simply reject off-topic queries without providing constructive guidance
+- **FR-083**: System MUST truncate queries that exceed token limits and process the first N tokens
+- **FR-084**: System MUST notify users when their query has been truncated due to length, allowing them to rephrase if needed
 
 ## Clarifications
 
@@ -167,6 +174,12 @@ An educator or course administrator wants to understand how students are interac
 - Q: How should textbook content be processed for embedding? → A: Content should be chunked into 512-token segments for embedding
 - Q: What is the required system availability? → A: System must maintain 99.9% availability measured monthly
 - Q: Should all topics in FR-046 to FR-070 be verified to exist in textbook before implementation? → A: Verify all topics in FR-046 to FR-070 exist in textbook before implementation
+
+### Session 2025-12-15
+
+- Q: How should the system identify users for rate limiting, conversation history, and analytics? → A: Session-based anonymous identification using browser session/cookie without requiring login
+- Q: How should the system respond to off-topic questions unrelated to the textbook? → A: Polite redirect - acknowledge the question, explain it's outside textbook scope, suggest related textbook topics
+- Q: How should the system handle queries that exceed token limits? → A: Truncate with notification - process first N tokens and inform user that question was truncated
 
 ## Cross-Cutting Constraints
 
@@ -197,6 +210,12 @@ All functional requirements that involve generating responses, providing explana
 ### Availability Requirements
 
 - **FR-077**: System MUST maintain 99.9% availability measured monthly
+
+### User Identification Requirements
+
+- **FR-078**: System MUST identify users via session-based anonymous identification using browser session cookies
+- **FR-079**: System MUST NOT require user login or authentication for chatbot access
+- **FR-080**: System MUST associate rate limiting, conversation history, and analytics with session identifiers
 
 ## Requirements *(mandatory)*
 
