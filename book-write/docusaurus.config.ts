@@ -13,6 +13,8 @@ const config: Config = {
   customFields: {
     // RAG Chatbot API endpoint - change this for different environments
     apiBaseUrl: process.env.API_BASE_URL || 'https://shurem-ragchatbot.hf.space/v1',
+    // Auth service URL - loaded from .env
+    authBaseUrl: process.env.AUTH_BASE_URL || 'http://localhost:3001',
   },
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future

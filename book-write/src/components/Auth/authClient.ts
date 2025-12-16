@@ -1,9 +1,12 @@
 import { createAuthClient } from 'better-auth/react';
 
-// Auth service URL - change this for production
-const AUTH_BASE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://auth.your-domain.com'
-  : 'http://localhost:3001';
+// Auth service URL - always use HF Space for now
+// Change to localhost:3001 for local backend development
+function getAuthUrl(): string {
+  return 'https://shurem-better-auth.hf.space';
+}
+
+export const AUTH_BASE_URL = getAuthUrl();
 
 export const authClient = createAuthClient({
   baseURL: AUTH_BASE_URL,

@@ -7,12 +7,27 @@ import 'dotenv/config';
 
 const app = new Hono();
 
-// CORS configuration
+// CORS configuration - allow multiple origins
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  process.env.FRONTEND_URL,
+  'https://shuremali02.github.io',
+].filter(Boolean) as string[];
+
 app.use('*', cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: (origin) => {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return allowedOrigins[0];
+    // Check if origin is in allowed list
+    if (allowedOrigins.includes(origin)) return origin;
+    // Fallback
+    return allowedOrigins[0];
+  },
   credentials: true,
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowHeaders: ['Content-Type', 'Authorization'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Cookie'],
+  exposeHeaders: ['Set-Cookie'],
 }));
 
 // Better-Auth routes - handles /api/auth/*
