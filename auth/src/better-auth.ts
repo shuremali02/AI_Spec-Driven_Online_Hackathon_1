@@ -21,8 +21,22 @@ export const auth = betterAuth({
       maxAge: 60 * 5, // 5 minutes
     },
   },
-  trustedOrigins: [process.env.FRONTEND_URL || 'http://localhost:3000'],
-  baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3001',
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: true,
+    },
+    defaultCookieAttributes: {
+      sameSite: 'none',
+      secure: true,
+    },
+  },
+  trustedOrigins: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://shuremali02.github.io',
+    process.env.FRONTEND_URL || '',
+  ].filter(Boolean),
+  baseURL: process.env.BETTER_AUTH_URL || 'https://shurem-better-auth.hf.space',
   secret: process.env.BETTER_AUTH_SECRET,
 });
 
