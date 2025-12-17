@@ -1,0 +1,337 @@
+/**
+ * Translation Component Styles
+ *
+ * Includes:
+ * - TranslateButton styles (idle, loading, success, error states)
+ * - UrduContent RTL styles with Noto Nastaliq Urdu font
+ * - Responsive media queries for mobile/tablet
+ * - Dark mode support
+ */
+
+/* ==========================================================================
+   TranslateButton Styles
+   ========================================================================== */
+
+.translateButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: var(--ifm-color-primary);
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 1.5rem;
+}
+
+.translateButton:hover:not(:disabled) {
+  background-color: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.translateButton:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.translateButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Button States */
+.buttonIdle {
+  background-color: var(--ifm-color-primary);
+}
+
+.buttonLoading {
+  background-color: var(--ifm-color-primary-light);
+  cursor: wait;
+}
+
+.buttonSuccess {
+  background-color: var(--ifm-color-success);
+}
+
+.buttonError {
+  background-color: var(--ifm-color-danger);
+}
+
+/* Loading Spinner */
+.loadingSpinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button Icon */
+.buttonIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+/* Error Message */
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--ifm-color-danger-darkest);
+  background-color: var(--ifm-color-danger-lightest);
+  border-radius: 0.25rem;
+}
+
+.retryLink {
+  color: var(--ifm-color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.retryLink:hover {
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   UrduContent RTL Styles
+   ========================================================================== */
+
+.urduContent {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  line-height: 2;
+  padding: 1.5rem;
+  background-color: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.urduText {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 1.125rem;
+  line-height: 2.2;
+}
+
+/* Urdu Badge */
+.urduBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 0.875rem;
+  color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-primary-lightest);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  direction: rtl;
+}
+
+/* Code blocks should remain LTR within RTL content */
+.urduContent pre,
+.urduContent code {
+  direction: ltr;
+  text-align: left;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.urduContent pre {
+  margin: 1rem 0;
+}
+
+/* Inline code */
+.urduContent code:not(pre code) {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Headings in Urdu */
+.urduContent h1,
+.urduContent h2,
+.urduContent h3,
+.urduContent h4,
+.urduContent h5,
+.urduContent h6 {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  text-align: right;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Lists in Urdu */
+.urduContent ul,
+.urduContent ol {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+.urduContent li {
+  margin-bottom: 0.5rem;
+}
+
+/* Tables in Urdu */
+.urduContent table {
+  direction: rtl;
+}
+
+.urduContent th,
+.urduContent td {
+  text-align: right;
+}
+
+/* Blockquotes in Urdu */
+.urduContent blockquote {
+  border-right: 4px solid var(--ifm-color-primary);
+  border-left: none;
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+/* Admonitions in Urdu */
+.urduContent .admonition {
+  direction: rtl;
+}
+
+/* ==========================================================================
+   TranslationWrapper Styles
+   ========================================================================== */
+
+.translationWrapper {
+  position: relative;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ==========================================================================
+   Responsive Styles - Mobile/Tablet
+   ========================================================================== */
+
+@media (max-width: 996px) {
+  .translateButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .urduContent {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .urduText {
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  .urduBadge {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .translateButton {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .urduContent {
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+    border-radius: 0.375rem;
+  }
+
+  .urduContent h1 {
+    font-size: 1.5rem;
+  }
+
+  .urduContent h2 {
+    font-size: 1.25rem;
+  }
+
+  .urduContent h3 {
+    font-size: 1.125rem;
+  }
+
+  .errorMessage {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .retryLink {
+    margin-left: 0;
+  }
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+[data-theme='dark'] .translateButton {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .translateButton:hover:not(:disabled) {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .urduContent {
+  background-color: var(--ifm-background-color);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .urduBadge {
+  background-color: rgba(var(--ifm-color-primary-rgb), 0.2);
+}
+
+[data-theme='dark'] .errorMessage {
+  background-color: rgba(var(--ifm-color-danger-rgb), 0.15);
+  color: var(--ifm-color-danger-light);
+}
+
+/* High contrast for better readability in dark mode */
+[data-theme='dark'] .urduText {
+  color: var(--ifm-font-color-base);
+}
+
+[data-theme='dark'] .urduContent code:not(pre code) {
+  background-color: var(--ifm-color-emphasis-200);
+}

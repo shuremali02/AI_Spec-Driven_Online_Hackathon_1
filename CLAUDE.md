@@ -212,6 +212,8 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 ## Active Technologies
 - Python 3.10+ (backend), TypeScript (frontend), JavaScript (Docusaurus) + OpenAI ChatKit Agents SDK, FastAPI, Qdrant, Neon Postgres, uv (Python package manager), Docusaurus (001-rag-chatbot)
 - Qdrant Cloud (vector database), Neon Serverless Postgres (conversation history), Docusaurus docs (content source) (001-rag-chatbot)
+- TypeScript 5.x (frontend), TypeScript/Node.js 18+ (backend) + React 18, Docusaurus 3.x, Hono, Better-Auth (translation-feature)
+- None (stateless - no database for translation) (translation-feature)
 
 ## Recent Changes
 - 001-rag-chatbot: Added Python 3.10+ (backend), TypeScript (frontend), JavaScript (Docusaurus) + OpenAI ChatKit Agents SDK, FastAPI, Qdrant, Neon Postgres, uv (Python package manager), Docusaurus

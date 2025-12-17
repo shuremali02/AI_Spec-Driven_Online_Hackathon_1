@@ -1,15 +1,21 @@
 import { createAuthClient } from 'better-auth/react';
 
-// Auth service URL - always use HF Space for now
-// Change to localhost:3001 for local backend development
+// Auth service URL
+// Toggle between local and production
 function getAuthUrl(): string {
-  return 'https://shurem-better-auth.hf.space';
+  // For local testing, use localhost:3001
+  return 'http://localhost:3001';
+  // For production, use HF Space:
+  // return 'https://shurem-better-auth.hf.space';
 }
 
 export const AUTH_BASE_URL = getAuthUrl();
 
 export const authClient = createAuthClient({
   baseURL: AUTH_BASE_URL,
+  fetchOptions: {
+    credentials: 'include',
+  },
 });
 
 export const {

@@ -9,6 +9,32 @@ const config: Config = {
   tagline: 'Master the fusion of AI and robotics - from ROS 2 fundamentals to conversational AI robots',
   favicon: 'img/favicon.svg',
 
+  // Add Google Font for Urdu translation (Noto Nastaliq Urdu)
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap',
+      },
+    },
+  ],
+
   // Custom fields for configuration (accessible via useDocusaurusContext)
   customFields: {
     // RAG Chatbot API endpoint - change this for different environments
