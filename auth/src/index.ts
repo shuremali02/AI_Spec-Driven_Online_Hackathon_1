@@ -14,6 +14,7 @@ const allowedOrigins = [
   'http://127.0.0.1:3000',
   process.env.FRONTEND_URL,
   'https://shuremali02.github.io',
+  'https://ai-spec-driven-online-hackathon-1.vercel.app',
 ].filter(Boolean) as string[];
 
 app.use('*', cors({
