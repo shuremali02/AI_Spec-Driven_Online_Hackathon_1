@@ -7,7 +7,11 @@ description: "Learn to create URDF (Unified Robot Description Format) robot desc
 keywords: [URDF, robot description, ROS 2, humanoid robotics, XML, robot modeling, Xacro]
 ---
 
+import { ChapterTranslator } from '@site/src/components/Translation';
+
 # Chapter 4: URDF Robot Descriptions
+
+<ChapterTranslator chapterId="module-1/chapter-04-urdf" />
 
 ## Section 1: Introduction to URDF
 

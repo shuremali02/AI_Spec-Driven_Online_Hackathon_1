@@ -7,7 +7,11 @@ description: "Learn to orchestrate multiple ROS 2 nodes using launch files and m
 keywords: [ROS 2, launch files, parameters, robot orchestration, rclpy, configuration]
 ---
 
+import { ChapterTranslator } from '@site/src/components/Translation';
+
 # Chapter 5: ROS 2 Launch Files and Parameter Management
+
+<ChapterTranslator chapterId="module-1/chapter-05-ros2-launch-files" />
 
 ## Section 1: Introduction to Launch Systems
 

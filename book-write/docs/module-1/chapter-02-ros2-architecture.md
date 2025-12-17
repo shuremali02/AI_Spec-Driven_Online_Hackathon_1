@@ -6,7 +6,11 @@ description: "Understand the modular structure of ROS 2, nodes, topics, services
 keywords: [ROS 2, nodes, topics, services, actions, DDS, QoS, rclpy, robot communication]
 ---
 
+import { ChapterTranslator } from '@site/src/components/Translation';
+
 # Chapter 2: ROS 2 Architecture Fundamentals
+
+<ChapterTranslator chapterId="module-1/chapter-02-ros2-architecture" />
 
 ## Introduction to the Robotic Nervous System
 

@@ -7,7 +7,11 @@ description: "Learn to create your first ROS 2 publisher and subscriber nodes us
 keywords: [ROS 2, publisher, subscriber, rclpy, Python, nodes, topics, communication]
 ---
 
+import { ChapterTranslator } from '@site/src/components/Translation';
+
 # Chapter 3: Building Your First ROS 2 Nodes
+
+<ChapterTranslator chapterId="module-1/chapter-03-first-nodes" />
 
 ## Introduction
 

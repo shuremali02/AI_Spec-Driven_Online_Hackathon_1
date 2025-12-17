@@ -7,7 +7,11 @@ description: "Understand Physical AI, embodied intelligence, sensor systems, and
 keywords: [Physical AI, embodied intelligence, sensors, humanoid robots, LiDAR, IMU, computer vision]
 ---
 
+import { ChapterTranslator } from '@site/src/components/Translation';
+
 # Chapter 1: Introduction to Physical AI and Embodied Intelligence
+
+<ChapterTranslator chapterId="module-1/chapter-01-intro-physical-ai" />
 
 ## 1.0. Chapter Overview
 

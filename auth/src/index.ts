@@ -3,6 +3,7 @@ import { cors } from 'hono/cors';
 import { auth } from './better-auth.js';
 import healthRoutes from './routes/health.js';
 import profileRoutes from './routes/profile.js';
+import translateRoutes from './routes/translate.js';
 import 'dotenv/config';
 
 const app = new Hono();
@@ -36,6 +37,7 @@ app.on(['POST', 'GET'], '/api/auth/*', (c) => auth.handler(c.req.raw));
 // Application routes
 app.route('/api', healthRoutes);
 app.route('/api', profileRoutes);
+app.route('/api', translateRoutes);
 
 // Root endpoint
 app.get('/', (c) => {
@@ -46,6 +48,7 @@ app.get('/', (c) => {
       health: '/api/health',
       auth: '/api/auth/*',
       profile: '/api/profile',
+      translate: '/api/translate',
     },
   });
 });
