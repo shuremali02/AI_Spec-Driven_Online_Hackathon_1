@@ -4,6 +4,7 @@ import { auth } from './better-auth.js';
 import healthRoutes from './routes/health.js';
 import profileRoutes from './routes/profile.js';
 import translateRoutes from './routes/translate.js';
+import personalizeRoutes from './routes/personalize.js';
 import 'dotenv/config';
 
 const app = new Hono();
@@ -39,6 +40,7 @@ app.on(['POST', 'GET'], '/api/auth/*', (c) => auth.handler(c.req.raw));
 app.route('/api', healthRoutes);
 app.route('/api', profileRoutes);
 app.route('/api', translateRoutes);
+app.route('/api', personalizeRoutes);
 
 // Root endpoint
 app.get('/', (c) => {
@@ -50,6 +52,7 @@ app.get('/', (c) => {
       auth: '/api/auth/*',
       profile: '/api/profile',
       translate: '/api/translate',
+      personalize: '/api/personalize',
     },
   });
 });

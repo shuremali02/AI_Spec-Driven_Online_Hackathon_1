@@ -7,10 +7,14 @@ keywords: [ROS 2, nodes, topics, services, actions, DDS, QoS, rclpy, robot commu
 ---
 
 import { ChapterTranslator } from '@site/src/components/Translation';
+import { ChapterPersonalizer } from '@site/src/components/Personalization';
 
 # Chapter 2: ROS 2 Architecture Fundamentals
 
-<ChapterTranslator chapterId="module-1/chapter-02-ros2-architecture" />
+<div style={{display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
+  <ChapterTranslator chapterId="module-1/chapter-02-ros2-architecture" />
+  <ChapterPersonalizer chapterId="module-1/chapter-02-ros2-architecture" />
+</div>
 
 ## Introduction to the Robotic Nervous System
 
