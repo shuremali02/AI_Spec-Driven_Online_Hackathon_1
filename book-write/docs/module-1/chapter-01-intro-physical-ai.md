@@ -8,10 +8,14 @@ keywords: [Physical AI, embodied intelligence, sensors, humanoid robots, LiDAR, 
 ---
 
 import { ChapterTranslator } from '@site/src/components/Translation';
+import { ChapterPersonalizer } from '@site/src/components/Personalization';
 
 # Chapter 1: Introduction to Physical AI and Embodied Intelligence
 
-<ChapterTranslator chapterId="module-1/chapter-01-intro-physical-ai" />
+<div style={{display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
+  <ChapterTranslator chapterId="module-1/chapter-01-intro-physical-ai" />
+  <ChapterPersonalizer chapterId="module-1/chapter-01-intro-physical-ai" />
+</div>
 
 ## 1.0. Chapter Overview
 
