@@ -8,14 +8,10 @@ keywords: [ROS 2, publisher, subscriber, rclpy, Python, nodes, topics, communica
 ---
 
 import { ChapterTranslator } from '@site/src/components/Translation';
-import { ChapterPersonalizer } from '@site/src/components/Personalization';
 
 # Chapter 3: Building Your First ROS 2 Nodes
 
-<div style={{display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
-  <ChapterTranslator chapterId="module-1/chapter-03-first-nodes" />
-  <ChapterPersonalizer chapterId="module-1/chapter-03-first-nodes" />
-</div>
+<ChapterTranslator chapterId="module-1/chapter-03-first-nodes" />
 
 ## Introduction
 

@@ -8,14 +8,10 @@ keywords: [ROS 2, launch files, parameters, robot orchestration, rclpy, configur
 ---
 
 import { ChapterTranslator } from '@site/src/components/Translation';
-import { ChapterPersonalizer } from '@site/src/components/Personalization';
 
 # Chapter 5: ROS 2 Launch Files and Parameter Management
 
-<div style={{display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
-  <ChapterTranslator chapterId="module-1/chapter-05-ros2-launch-files" />
-  <ChapterPersonalizer chapterId="module-1/chapter-05-ros2-launch-files" />
-</div>
+<ChapterTranslator chapterId="module-1/chapter-05-ros2-launch-files" />
 
 ## Section 1: Introduction to Launch Systems
 

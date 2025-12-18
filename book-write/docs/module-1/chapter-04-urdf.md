@@ -8,14 +8,10 @@ keywords: [URDF, robot description, ROS 2, humanoid robotics, XML, robot modelin
 ---
 
 import { ChapterTranslator } from '@site/src/components/Translation';
-import { ChapterPersonalizer } from '@site/src/components/Personalization';
 
 # Chapter 4: URDF Robot Descriptions
 
-<div style={{display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
-  <ChapterTranslator chapterId="module-1/chapter-04-urdf" />
-  <ChapterPersonalizer chapterId="module-1/chapter-04-urdf" />
-</div>
+<ChapterTranslator chapterId="module-1/chapter-04-urdf" />
 
 ## Section 1: Introduction to URDF
 
