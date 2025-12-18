@@ -59,6 +59,38 @@ export function ChapterPersonalizer({ chapterId }: ChapterPersonalizerProps): Re
     }));
 
     try {
+      // First, fetch the chapter content from the current page
+      const currentUrl = window.location.href;
+      let chapterContent = '';
+
+      // Try to get content from the current page
+      const contentElement = document.querySelector('article');
+      if (contentElement) {
+        // Extract the main content, excluding the translator/personalizer buttons
+        const clone = contentElement.cloneNode(true) as HTMLElement;
+        // Remove the personalization and translation buttons
+        const buttonContainer = clone.querySelector('div:has(.personalizeButton), div:has(.translateButton)');
+        if (buttonContainer) {
+          buttonContainer.remove();
+        }
+        chapterContent = clone.innerText || clone.textContent || '';
+      } else {
+        // Fallback: try to get content from the main content area
+        const mainContent = document.querySelector('main') || document.querySelector('#__docusaurus');
+        if (mainContent) {
+          const clone = mainContent.cloneNode(true) as HTMLElement;
+          // Remove buttons to avoid including them in content
+          const buttons = clone.querySelectorAll('button');
+          buttons.forEach(btn => {
+            if (btn.classList.contains('personalizeButton') ||
+                btn.classList.contains('translateButton')) {
+              btn.remove();
+            }
+          });
+          chapterContent = clone.innerText || clone.textContent || '';
+        }
+      }
+
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), PERSONALIZATION_CONFIG.TIMEOUT_MS);
 
@@ -70,6 +102,7 @@ export function ChapterPersonalizer({ chapterId }: ChapterPersonalizerProps): Re
         },
         body: JSON.stringify({
           chapter_id: chapterId,
+          chapter_content: chapterContent,
         }),
         signal: controller.signal,
       });

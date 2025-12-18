@@ -374,13 +374,18 @@ personalize.post('/personalize', async (c) => {
     }
 
     // Fetch chapter content (TASK-005)
-    const chapterContent = await fetchChapterContent(body.chapter_id);
+    // For deployment compatibility, allow frontend to provide content directly
+    let chapterContent = body.chapter_content;
     if (!chapterContent) {
-      return c.json({
-        success: false,
-        error: 'CHAPTER_NOT_FOUND',
-        message: 'Chapter not found',
-      }, 404);
+      // Fallback to filesystem fetch if content not provided
+      chapterContent = await fetchChapterContent(body.chapter_id);
+      if (!chapterContent) {
+        return c.json({
+          success: false,
+          error: 'CHAPTER_NOT_FOUND',
+          message: 'Chapter not found and no content provided',
+        }, 404);
+      }
     }
 
     // Log personalization request

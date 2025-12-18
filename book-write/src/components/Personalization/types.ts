@@ -79,6 +79,9 @@ export interface PersonalizationState {
 export interface PersonalizeRequest {
   /** Unique identifier for the chapter */
   chapter_id: string;
+
+  /** Chapter content to personalize (optional, fallback to server-side fetch) */
+  chapter_content?: string;
 }
 
 /**
