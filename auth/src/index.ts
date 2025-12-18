@@ -16,7 +16,14 @@ const allowedOrigins = [
   process.env.FRONTEND_URL,
   'https://shuremali02.github.io',
   'https://ai-spec-driven-online-hackathon-1.vercel.app',
+  'https://physical-ai-book.vercel.app',
 ].filter(Boolean) as string[];
+
+// Check if origin matches Vercel preview/production pattern
+const isVercelOrigin = (origin: string): boolean => {
+  return /^https:\/\/ai-spec-driven-online-hackathon-1(-[a-z0-9]+)?\.vercel\.app$/.test(origin) ||
+         /^https:\/\/physical-ai-book(-[a-z0-9]+)?\.vercel\.app$/.test(origin);
+};
 
 app.use('*', cors({
   origin: (origin) => {
@@ -24,6 +31,8 @@ app.use('*', cors({
     if (!origin) return allowedOrigins[0];
     // Check if origin is in allowed list
     if (allowedOrigins.includes(origin)) return origin;
+    // Check Vercel preview URLs
+    if (isVercelOrigin(origin)) return origin;
     // Fallback
     return allowedOrigins[0];
   },

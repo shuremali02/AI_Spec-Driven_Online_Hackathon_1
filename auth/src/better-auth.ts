@@ -35,6 +35,8 @@ export const auth = betterAuth({
     'http://127.0.0.1:3000',
     'https://shuremali02.github.io',
     'https://ai-spec-driven-online-hackathon-1.vercel.app',
+    'https://*.vercel.app',
+    'https://physical-ai-book.vercel.app',
     process.env.FRONTEND_URL || '',
   ].filter(Boolean),
   baseURL: process.env.BETTER_AUTH_URL || 'https://shurem-better-auth.hf.space',
