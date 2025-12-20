@@ -15,8 +15,9 @@
 .translateButton {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.625rem 1rem;
+  padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 500;
   color: #ffffff;
@@ -24,8 +25,9 @@
   border: none;
   border-radius: 0.375rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  margin-bottom: 1.5rem;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  min-width: 180px;
+  height: 40px;
 }
 
 .translateButton:hover:not(:disabled) {
@@ -104,6 +106,10 @@
   text-decoration: underline;
   cursor: pointer;
   margin-left: 0.5rem;
+  background: none;
+  border: none;
+  font-size: inherit;
+  padding: 0;
 }
 
 .retryLink:hover {
@@ -115,15 +121,21 @@
    ========================================================================== */
 
 .urduContent {
-  direction: rtl;
-  text-align: right;
-  font-family: 'Noto Nastaliq Urdu', serif;
-  line-height: 2;
+  /* Container stays LTR for proper positioning */
+  direction: ltr;
+  text-align: left;
   padding: 1.5rem;
   background-color: var(--ifm-background-surface-color);
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 0.5rem;
   margin: 1rem 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .urduText {
@@ -146,7 +158,8 @@
   background-color: var(--ifm-color-primary-lightest);
   border-radius: 1rem;
   margin-bottom: 1rem;
-  direction: rtl;
+  /* Badge stays LTR, only text inside is Urdu */
+  direction: ltr;
 }
 
 /* Code blocks should remain LTR within RTL content */
@@ -220,14 +233,34 @@
 
 .translationWrapper {
   position: relative;
+  direction: ltr;
+  text-align: left;
 }
 
 .buttonContainer {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
   margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+  direction: ltr;
+  text-align: left;
+}
+
+/* Button wrapper - prevent RTL inheritance */
+.buttonWrapper {
+  direction: ltr;
+  text-align: left;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Contain RTL content within parent */
+.buttonWrapper .urduContent {
+  float: none;
+  clear: both;
 }
 
 .toggleContainer {
@@ -242,13 +275,8 @@
 
 @media (max-width: 996px) {
   .translateButton {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .buttonContainer {
-    flex-direction: column;
-    align-items: stretch;
+    min-width: 160px;
+    height: 38px;
   }
 
   .urduContent {
@@ -268,8 +296,10 @@
 
 @media (max-width: 576px) {
   .translateButton {
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
+    min-width: 140px;
+    height: 36px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
   }
 
   .urduContent {

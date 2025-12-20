@@ -17,8 +17,9 @@
 .personalizeButton {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.625rem 1rem;
+  padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 500;
   color: #ffffff;
@@ -26,8 +27,9 @@
   border: none;
   border-radius: 0.375rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  margin-bottom: 1.5rem;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  min-width: 180px;
+  height: 40px;
 }
 
 .personalizeButton:hover:not(:disabled) {
@@ -213,10 +215,9 @@
 /* Button Container - for side-by-side buttons */
 .buttonContainer {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
-  flex-wrap: wrap;
 }
 
 /* ==========================================================================
@@ -225,13 +226,8 @@
 
 @media (max-width: 996px) {
   .personalizeButton {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .buttonContainer {
-    flex-direction: column;
-    align-items: stretch;
+    min-width: 160px;
+    height: 38px;
   }
 
   .personalizedContent {
@@ -245,8 +241,10 @@
 
 @media (max-width: 576px) {
   .personalizeButton {
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
+    min-width: 140px;
+    height: 36px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
   }
 
   .personalizedContent {

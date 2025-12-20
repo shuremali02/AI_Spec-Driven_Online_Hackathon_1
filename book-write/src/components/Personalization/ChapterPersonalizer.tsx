@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { useAuth } from '@site/src/components/Auth/AuthProvider';
-import { AUTH_BASE_URL } from '@site/src/components/Auth/authClient';
 import { PersonalizedContent } from './PersonalizedContent';
 import { hasCompleteProfile } from './utils';
 import styles from './Personalization.module.css';
@@ -60,7 +60,7 @@ export function ChapterPersonalizer({ chapterId }: ChapterPersonalizerProps): Re
 
     try {
       // First, fetch the chapter content from the current page
-      const currentUrl = window.location.href;
+      console.log('[Personalization] Starting personalization for chapter:', chapterId);
       let chapterContent = '';
 
       // Try to get content from the current page
@@ -94,9 +94,13 @@ export function ChapterPersonalizer({ chapterId }: ChapterPersonalizerProps): Re
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), PERSONALIZATION_CONFIG.TIMEOUT_MS);
 
-      const response = await fetch(`${AUTH_BASE_URL}${PERSONALIZATION_CONFIG.ENDPOINT}`, {
+      // Use FastAPI backend for personalization
+      const apiUrl = `${PERSONALIZATION_CONFIG.BACKEND_URL}${PERSONALIZATION_CONFIG.ENDPOINT}`;
+      console.log('[Personalization] Calling API:', apiUrl);
+      console.log('[Personalization] Content length:', chapterContent.length);
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -106,6 +110,8 @@ export function ChapterPersonalizer({ chapterId }: ChapterPersonalizerProps): Re
         }),
         signal: controller.signal,
       });
+
+      console.log('[Personalization] Response status:', response.status);
 
       clearTimeout(timeoutId);
 
@@ -131,9 +137,11 @@ export function ChapterPersonalizer({ chapterId }: ChapterPersonalizerProps): Re
         }));
       }
     } catch (error) {
+      console.error('[Personalization] Error:', error);
       let errorMessage = ERROR_MESSAGES.PERSONALIZATION_FAILED;
 
       if (error instanceof Error) {
+        console.error('[Personalization] Error name:', error.name, 'Message:', error.message);
         if (error.name === 'AbortError') {
           errorMessage = ERROR_MESSAGES.TIMEOUT;
         } else if (error.message.includes('fetch') || error.message.includes('network')) {
@@ -214,7 +222,7 @@ export function ChapterPersonalizer({ chapterId }: ChapterPersonalizerProps): Re
   const isDisabled = status === 'loading';
 
   return (
-    <div>
+    <>
       <button
         type="button"
         className={`${styles.personalizeButton} ${getButtonStateClass()}`}
@@ -258,14 +266,29 @@ export function ChapterPersonalizer({ chapterId }: ChapterPersonalizerProps): Re
         </div>
       )}
 
-      {/* Display personalized content when available */}
-      {showPersonalized && state.personalizedContent && (
-        <PersonalizedContent
-          content={state.personalizedContent}
-          personalizationSummary={state.personalizationSummary || undefined}
-        />
-      )}
-    </div>
+      {/* Render PersonalizedContent via portal to avoid flex container issues */}
+      {showPersonalized && state.personalizedContent && typeof document !== 'undefined' && (() => {
+        const article = document.querySelector('article');
+        const buttonContainer = article?.querySelector('div[style*="flex"]');
+        if (buttonContainer) {
+          let contentContainer = document.getElementById('personalized-content-portal');
+          if (!contentContainer) {
+            contentContainer = document.createElement('div');
+            contentContainer.id = 'personalized-content-portal';
+            contentContainer.style.cssText = 'width: 100%; max-width: 100%;';
+            buttonContainer.insertAdjacentElement('afterend', contentContainer);
+          }
+          return createPortal(
+            <PersonalizedContent
+              content={state.personalizedContent}
+              personalizationSummary={state.personalizationSummary || undefined}
+            />,
+            contentContainer
+          );
+        }
+        return null;
+      })()}
+    </>
   );
 }
 

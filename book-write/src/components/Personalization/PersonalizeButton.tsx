@@ -66,7 +66,8 @@ export function PersonalizeButton({
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), PERSONALIZATION_CONFIG.TIMEOUT_MS);
 
-      const response = await fetch(`${AUTH_BASE_URL}${PERSONALIZATION_CONFIG.ENDPOINT}`, {
+      const apiUrl = `${PERSONALIZATION_CONFIG.BACKEND_URL}${PERSONALIZATION_CONFIG.ENDPOINT}`;
+      const response = await fetch(apiUrl, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -74,6 +75,7 @@ export function PersonalizeButton({
         },
         body: JSON.stringify({
           chapter_id: chapterId,
+          chapter_content: chapterContent,
         }),
         signal: controller.signal,
       });

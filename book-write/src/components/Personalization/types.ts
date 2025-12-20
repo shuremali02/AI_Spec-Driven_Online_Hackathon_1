@@ -210,4 +210,10 @@ export const PERSONALIZATION_CONFIG = {
 
   /** Request timeout in milliseconds (90 seconds for AI processing) */
   TIMEOUT_MS: 90000,
+
+  /**
+   * Backend URL for personalization API.
+   * Uses FastAPI backend on Hugging Face Spaces.
+   */
+  BACKEND_URL: 'https://shurem-ragchatbot.hf.space',
 } as const;

@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useAuth } from '@site/src/components/Auth/AuthProvider';
 import { AUTH_BASE_URL } from '@site/src/components/Auth/authClient';
 import { UrduContent } from './UrduContent';
@@ -341,7 +342,8 @@ export function ChapterTranslator({ chapterId }: ChapterTranslatorProps): React.
   const isDisabled = status === 'loading';
 
   return (
-    <div>
+    <>
+      {/* Button only - stays in flex container */}
       <button
         type="button"
         className={`${styles.translateButton} ${getButtonStateClass()}`}
@@ -388,11 +390,27 @@ export function ChapterTranslator({ chapterId }: ChapterTranslatorProps): React.
         </div>
       )}
 
-      {/* Display translated Urdu content when available */}
-      {showTranslated && state.translatedContent && (
-        <UrduContent content={state.translatedContent} />
-      )}
-    </div>
+      {/* Render UrduContent via portal to article container */}
+      {showTranslated && state.translatedContent && typeof document !== 'undefined' && (() => {
+        const article = document.querySelector('article');
+        const buttonContainer = article?.querySelector('div[style*="flex"]');
+        if (buttonContainer) {
+          // Insert after button container
+          let contentContainer = document.getElementById('urdu-content-portal');
+          if (!contentContainer) {
+            contentContainer = document.createElement('div');
+            contentContainer.id = 'urdu-content-portal';
+            contentContainer.style.cssText = 'direction: ltr; width: 100%; max-width: 100%;';
+            buttonContainer.insertAdjacentElement('afterend', contentContainer);
+          }
+          return createPortal(
+            <UrduContent content={state.translatedContent} />,
+            contentContainer
+          );
+        }
+        return null;
+      })()}
+    </>
   );
 }
 

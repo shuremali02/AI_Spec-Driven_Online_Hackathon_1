@@ -207,63 +207,54 @@ ${content}`;
 }
 
 /**
- * Personalize content using Google Gemini API
+ * Personalize content using Groq API with gpt-oss-20b model
  */
 async function personalizeWithGemini(
   content: string,
   profile: ProfileResponse
 ): Promise<{ personalizedContent: string; adjustmentsMade: string[] }> {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
 
   if (!apiKey) {
-    throw new Error('GEMINI_API_KEY environment variable is not set');
+    throw new Error('GROQ_API_KEY environment variable is not set');
   }
 
   const userPrompt = buildUserPrompt(content, profile);
 
-  // Use Gemini API directly
+  // Use Groq API with gpt-oss-20b model (free tier - 200k tokens/min, 1000 req/day)
   const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    'https://api.groq.com/openai/v1/chat/completions',
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        contents: [
-          {
-            parts: [
-              { text: PERSONALIZATION_SYSTEM_PROMPT + '\n\n' + userPrompt }
-            ]
-          }
+        model: 'llama-3.3-70b-versatile',
+        messages: [
+          { role: 'system', content: PERSONALIZATION_SYSTEM_PROMPT },
+          { role: 'user', content: userPrompt }
         ],
-        generationConfig: {
-          temperature: 0.3, // Lower temperature for more consistent output
-          maxOutputTokens: 32000, // Allow for long chapters
-        },
-        safetySettings: [
-          { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
-          { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
-          { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
-          { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' },
-        ],
+        temperature: 0.3,
+        max_tokens: 8192,
       }),
     }
   );
 
   if (!response.ok) {
     const errorText = await response.text();
-    console.error('[Personalize] Gemini API error:', response.status, errorText);
-    throw new Error(`Gemini API error: ${response.status}`);
+    console.error('[Personalize] Groq API error:', response.status, errorText);
+    throw new Error(`Groq API error: ${response.status}`);
   }
 
   const data = await response.json();
 
-  // Extract text from Gemini response
-  const personalizedContent = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  // Extract text from Groq response (OpenAI compatible format)
+  const personalizedContent = data.choices?.[0]?.message?.content || '';
 
   if (!personalizedContent) {
-    throw new Error('Empty response from Gemini API');
+    throw new Error('Empty response from Groq API');
   }
 
   // Build adjustments summary
