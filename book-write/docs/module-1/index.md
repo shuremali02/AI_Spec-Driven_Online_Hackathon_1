@@ -8,9 +8,14 @@ keywords: [ROS 2, robot middleware, Physical AI, URDF, rclpy]
 ---
 
 import ChapterCard from '@site/src/components/ChapterCard';
+import { ChapterPersonalizer } from '@site/src/components/Personalization';
 
 
 # Module 1: The Robotic Nervous System (ROS 2)
+
+<div style={{display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
+  <ChapterPersonalizer chapterId="module-1/index" />
+</div>
 
 ## Purpose
 

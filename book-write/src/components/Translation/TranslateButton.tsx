@@ -189,7 +189,7 @@ export function TranslateButton({
   const isDisabled = status === 'loading';
 
   return (
-    <div className={className}>
+    <div className={`${styles.buttonWrapper} ${className || ''}`}>
       <button
         type="button"
         className={`${styles.translateButton} ${getButtonStateClass()}`}

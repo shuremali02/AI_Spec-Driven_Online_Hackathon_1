@@ -42,6 +42,13 @@ class Config:
     # SSE Streaming
     SSE_STREAMING_ENABLED: bool = os.getenv("SSE_STREAMING_ENABLED", "true").lower() == "true"
 
+    # Personalization settings
+    PERSONALIZE_MAX_TOKENS: int = int(os.getenv("PERSONALIZE_MAX_TOKENS", "8192"))
+    PERSONALIZE_RATE_LIMIT: int = int(os.getenv("PERSONALIZE_RATE_LIMIT", "5"))
+    PERSONALIZE_RATE_LIMIT_WINDOW: int = int(os.getenv("PERSONALIZE_RATE_LIMIT_WINDOW", "60"))  # in seconds
+    PERSONALIZE_TIMEOUT: int = int(os.getenv("PERSONALIZE_TIMEOUT", "60"))  # in seconds
+    AUTH_BACKEND_URL: str = os.getenv("AUTH_BACKEND_URL", "http://localhost:3001")
+
     @classmethod
     def validate(cls):
         """

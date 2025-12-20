@@ -4,6 +4,7 @@ import { auth } from './better-auth.js';
 import healthRoutes from './routes/health.js';
 import profileRoutes from './routes/profile.js';
 import translateRoutes from './routes/translate.js';
+import personalizeRoutes from './routes/personalize.js';
 import 'dotenv/config';
 
 const app = new Hono();
@@ -14,7 +15,15 @@ const allowedOrigins = [
   'http://127.0.0.1:3000',
   process.env.FRONTEND_URL,
   'https://shuremali02.github.io',
+  'https://ai-spec-driven-online-hackathon-1.vercel.app',
+  'https://physical-ai-book.vercel.app',
 ].filter(Boolean) as string[];
+
+// Check if origin matches Vercel preview/production pattern
+const isVercelOrigin = (origin: string): boolean => {
+  return /^https:\/\/ai-spec-driven-online-hackathon-1(-[a-z0-9]+)?\.vercel\.app$/.test(origin) ||
+         /^https:\/\/physical-ai-book(-[a-z0-9]+)?\.vercel\.app$/.test(origin);
+};
 
 app.use('*', cors({
   origin: (origin) => {
@@ -22,6 +31,8 @@ app.use('*', cors({
     if (!origin) return allowedOrigins[0];
     // Check if origin is in allowed list
     if (allowedOrigins.includes(origin)) return origin;
+    // Check Vercel preview URLs
+    if (isVercelOrigin(origin)) return origin;
     // Fallback
     return allowedOrigins[0];
   },
@@ -38,6 +49,7 @@ app.on(['POST', 'GET'], '/api/auth/*', (c) => auth.handler(c.req.raw));
 app.route('/api', healthRoutes);
 app.route('/api', profileRoutes);
 app.route('/api', translateRoutes);
+app.route('/api', personalizeRoutes);
 
 // Root endpoint
 app.get('/', (c) => {
@@ -49,6 +61,7 @@ app.get('/', (c) => {
       auth: '/api/auth/*',
       profile: '/api/profile',
       translate: '/api/translate',
+      personalize: '/api/personalize',
     },
   });
 });

@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from api.routes_chat import router as chat_router
+from api.personalize import router as personalize_router
 from db.postgres_client import init_db, close_db
 from vector.qdrant_client import get_qdrant_manager
 from api.middleware import rate_limit_middleware
@@ -84,6 +85,7 @@ app.middleware("http")(rate_limit_middleware)
 
 # Include API routes
 app.include_router(chat_router)
+app.include_router(personalize_router)
 
 @app.get("/")
 async def root():
