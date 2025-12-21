@@ -104,9 +104,11 @@ export function ChapterPersonalizer({ chapterId }: ChapterPersonalizerProps): Re
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',  // Send cookies for authentication
         body: JSON.stringify({
           chapter_id: chapterId,
           chapter_content: chapterContent,
+          user_id: user?.id,  // Send logged-in user's ID
         }),
         signal: controller.signal,
       });
