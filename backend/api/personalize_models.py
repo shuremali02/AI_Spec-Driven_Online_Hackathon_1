@@ -24,6 +24,10 @@ class PersonalizeRequest(BaseModel):
         min_length=1,
         max_length=50000
     )
+    user_id: Optional[str] = Field(
+        None,
+        description="User ID from frontend (for auth bypass in local testing)"
+    )
 
 
 class HardwareContext(BaseModel):

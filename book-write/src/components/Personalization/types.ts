@@ -213,7 +213,8 @@ export const PERSONALIZATION_CONFIG = {
 
   /**
    * Backend URL for personalization API.
-   * Uses FastAPI backend on Hugging Face Spaces.
+   * For local testing: 'http://127.0.0.1:8000'
+   * For production: 'https://shurem-ragchatbot.hf.space'
    */
-  BACKEND_URL: 'https://shurem-ragchatbot.hf.space',
+  BACKEND_URL: 'https://shurem-ragchatbot.hf.space',  // Production URL
 } as const;

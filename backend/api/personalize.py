@@ -59,19 +59,73 @@ async def personalize_content(
     Rate limited to 5 requests per minute per user.
     """
     try:
-        # TEMPORARY: Using mock profile for testing (auth bypassed)
-        # TODO: Re-enable auth before production
-        user_id = "test-user-123"
-        profile = UserProfile(
-            auth_user_id=user_id,
-            experience_level="intermediate",
-            programming_languages=["Python", "JavaScript"],
-            frameworks_platforms=["ROS/ROS 2", "TensorFlow"],
-            device_type="laptop",
-            operating_system="linux",
-            system_capability="medium"
-        )
-        logger.info(f"Using mock profile for testing: {user_id}")
+        # ==========================================================
+        # LOCAL TESTING MODE - Set to False before production deploy
+        # ==========================================================
+        # Step 1: Get user ID
+        # Priority: 1) Request body user_id, 2) Session cookie validation
+        user_id = body.user_id
+
+        if user_id:
+            logger.info(f"Using user_id from request body: {user_id}")
+        else:
+            # Fallback to session cookie validation
+            user_id = await validate_session(request)
+            if not user_id:
+                logger.warning("Personalization request without valid session or user_id")
+                return JSONResponse(
+                    status_code=401,
+                    content={
+                        "success": False,
+                        "error": ErrorCodes.AUTH_REQUIRED,
+                        "message": "Authentication required. Please log in to personalize content."
+                    }
+                )
+
+        # Step 2: Get user profile from database
+        profile = await get_user_profile(user_id, session)
+        if not profile:
+            logger.warning(f"No profile found for user: {user_id}")
+            return JSONResponse(
+                status_code=404,
+                content={
+                    "success": False,
+                    "error": ErrorCodes.PROFILE_NOT_FOUND,
+                    "message": "User profile not found. Please complete your profile setup."
+                }
+            )
+
+        # Step 3: Check if profile is complete
+        is_complete, missing_fields = profile.is_complete()
+        if not is_complete:
+            logger.warning(f"Incomplete profile for user {user_id}: missing {missing_fields}")
+            return JSONResponse(
+                status_code=400,
+                content={
+                    "success": False,
+                    "error": ErrorCodes.PROFILE_INCOMPLETE,
+                    "message": "Profile incomplete. Please fill in all required fields.",
+                    "missing_fields": missing_fields
+                }
+            )
+
+        # Step 4: Apply rate limiting
+        rate_limiter = get_personalize_rate_limiter()
+        is_allowed, retry_after = rate_limiter.check(user_id)
+        if not is_allowed:
+            logger.warning(f"Rate limited user: {user_id}")
+            return JSONResponse(
+                status_code=429,
+                content={
+                    "success": False,
+                    "error": ErrorCodes.RATE_LIMITED,
+                    "message": "Too many requests. Please wait before trying again.",
+                    "retry_after": retry_after or 60
+                }
+            )
+
+        logger.info(f"Personalizing for user {user_id}: level={profile.experience_level}, "
+                    f"languages={profile.programming_languages}, capability={profile.system_capability}")
 
         # Step 5: Call PersonalizeContentAgent
         logger.info(f"Personalizing chapter '{body.chapter_id}' for user: {user_id}")
@@ -124,3 +178,62 @@ async def personalize_content(
                 "retry_after": 5
             }
         )
+
+
+# =============================================================================
+# DEBUG ENDPOINTS - Commented out for production
+# =============================================================================
+# @router.get("/debug/profile")
+# async def debug_profile(session: AsyncSession = Depends(get_db_session)):
+#     """
+#     DEBUG: View all profiles in database.
+#     TODO: Remove this endpoint before production deploy!
+#     """
+#     from sqlalchemy import text
+#     result = await session.execute(text("""
+#         SELECT auth_user_id, experience_level, programming_languages,
+#                frameworks_platforms, device_type, operating_system, system_capability
+#         FROM user_profiles
+#     """))
+#     rows = result.fetchall()
+#
+#     profiles = []
+#     for row in rows:
+#         profiles.append({
+#             "auth_user_id": row[0],
+#             "experience_level": row[1],
+#             "programming_languages": row[2],
+#             "frameworks_platforms": row[3],
+#             "device_type": row[4],
+#             "operating_system": row[5],
+#             "system_capability": row[6]
+#         })
+#
+#     return {"profiles": profiles, "count": len(profiles)}
+
+
+# @router.get("/debug/update/{user_id}/{experience_level}")
+# async def debug_update_profile(
+#     user_id: str,
+#     experience_level: str,
+#     session: AsyncSession = Depends(get_db_session)
+# ):
+#     """
+#     DEBUG: Update a user's experience level.
+#     TODO: Remove this endpoint before production deploy!
+#
+#     Usage: PUT /api/debug/profile/PK6EryRXKtWazlmRifLU9OD7ZMSSTXT9?experience_level=beginner
+#     """
+#     from sqlalchemy import text
+#
+#     valid_levels = ["beginner", "intermediate", "advanced", "expert"]
+#     if experience_level not in valid_levels:
+#         return {"error": f"Invalid level. Must be one of: {valid_levels}"}
+#
+#     await session.execute(
+#         text("UPDATE user_profiles SET experience_level = :level WHERE auth_user_id = :user_id"),
+#         {"level": experience_level, "user_id": user_id}
+#     )
+#     await session.commit()
+#
+#     return {"success": True, "user_id": user_id, "new_experience_level": experience_level}

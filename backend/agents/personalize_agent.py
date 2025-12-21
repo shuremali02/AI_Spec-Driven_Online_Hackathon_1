@@ -111,7 +111,8 @@ class PersonalizeContentAgent:
 
         self.client = AsyncOpenAI(
             base_url=base_url,
-            api_key=api_key
+            api_key=api_key,
+            timeout=120.0  # 2 minutes timeout for large content
         )
 
         self.model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
