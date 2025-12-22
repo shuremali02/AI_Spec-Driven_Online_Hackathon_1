@@ -42,6 +42,12 @@ export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
+        <div className={styles.header}>
+          <h2 className={styles.sectionTitle}>What You'll Learn</h2>
+          <p className={styles.sectionSubtitle}>
+            Master Physical AI and Humanoid Robotics
+          </p>
+        </div>
         <div className={styles.featureGrid}>
           {FeatureList.map((props, idx) => (
             <FeatureCard
