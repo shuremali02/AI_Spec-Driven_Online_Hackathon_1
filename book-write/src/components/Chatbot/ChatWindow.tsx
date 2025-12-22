@@ -1,6 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Conversation, Message, Citation, chatbotApi } from './api';
+import { useAuth } from '@site/src/components/Auth/AuthProvider';
 import './ChatWindow.css';
+
+/**
+ * Generates a personalized greeting based on time and user name
+ */
+const getPersonalizedGreeting = (userName?: string | null): string => {
+  const hour = new Date().getHours();
+  let prefix: string;
+
+  if (hour >= 5 && hour < 12) {
+    prefix = 'Good morning';
+  } else if (hour >= 12 && hour < 18) {
+    prefix = 'Good afternoon';
+  } else {
+    prefix = 'Good evening';
+  }
+
+  if (userName) {
+    // Extract first name if full name provided
+    const firstName = userName.split(' ')[0];
+    return `${prefix}, ${firstName}! How can I help you today?`;
+  }
+  return `${prefix}! How can I help you today?`;
+};
 
 // Generate or get session ID for anonymous users
 const getSessionId = (): string => {
@@ -35,6 +59,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   initialQuery,
   onQueryProcessed
 }) => {
+  const { user } = useAuth();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -254,7 +279,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
         <div className="chat-messages">
           {messages.length === 0 ? (
             <div className="chat-welcome-message">
-              <p>Hello! I'm your textbook assistant. Ask me anything about the Physical AI & Humanoid Robotics content, and I'll provide answers based on the textbook with citations.</p>
+              <p className="greeting">{getPersonalizedGreeting(user?.name)}</p>
+              <p>I'm your textbook assistant. Ask me anything about the Physical AI & Humanoid Robotics content, and I'll provide answers based on the textbook with citations.</p>
             </div>
           ) : (
             messages.map((message) => (
